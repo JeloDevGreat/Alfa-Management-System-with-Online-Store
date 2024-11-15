@@ -37,7 +37,7 @@ include("includes/main.php");
             
             $ip_add = getRealUserIp();
 
-            $select_cart = "SELECT * from cart where customer_ip = '$ip_add'";
+            $select_cart = "SELECT * from cart WHERE customer_ip = '$ip_add'";
 
             $run_cart = mysqli_query($con,$select_cart);
 
