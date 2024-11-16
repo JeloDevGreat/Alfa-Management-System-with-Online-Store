@@ -12,7 +12,6 @@
 <html lang="en" data-bs-theme="auto">
 
   <head>
-    <script src="../assets/js/color-modes.js"></script>
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto" rel="stylesheet">
     <meta http-equiv="x-ua-compatible" content="IE=edge, chrome=1">
@@ -24,12 +23,12 @@
     <link href="styles/style.css" rel="stylesheet">
     <link href="styles/backend.css" rel="stylesheet">
     <link href="styles/bootstrap.min.css" rel="stylesheet">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="js/bootstrap.bundle.js"></script>
-    <style>
+    <!-- <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -106,16 +105,18 @@
       .bd-mode-toggle .dropdown-menu .active .bi {
         display: block !important;
       }
-    </style>
+    </style> -->
   </head>
   <body>
-      <!-- <main class="row d-flex justify-content-around mh-100 bg-primary">
-        <div class="col-sm-2 m-5 p-4 bg-light">
+      <main>
+        <div class="container row">
           <div class="img-logo col-4">
             <img src="images/alfa-removebg-preview.png" alt="alfa logo" width="100" class=" rounded-circle" >
           </div>
         
-          <div class="container col-sm-2 text-dark">Welcome to Alfa SportsCity</div>
+          <div class="container col-sm-2 text-dark">
+            <p>Welcome to Alfa SportsCity</p>
+          </div>
 
           <form action="" method="POST" class="p-3">
 
@@ -139,11 +140,11 @@
               </button>
             </div>
 
-           </form>
+          </form>
         </div>
-      </main> -->
+      </main>
 
-        <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
           <symbol id="check2" viewBox="0 0 16 16">
             <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
           </symbol>
@@ -209,16 +210,16 @@
           <div class="invalid-feedback">Please fill out this field.</div>
         </div>
 
-        <!-- <div class="form-check text-start my-3">
+        <div class="form-check text-start my-3">
           <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
           <label class="form-check-label" for="flexCheckDefault">
             Remember me
           </label>
         </div> -->
-        <button class="btn btn-primary w-100 py-2" type="submit" name="login">Sign in</button>
+        <!-- <button class="btn btn-primary w-100 py-2" type="submit" name="login">Sign in</button>
         <p class="mt-5 mb-3 text-body-secondary">&copy;2024</p>
       </form>
-    </main>
+    </main> -->
 
       <!-- FOOTER -->
       <!-- <footer class="page-footer"> -->
