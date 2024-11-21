@@ -2,7 +2,7 @@
 
 session_start();
 
-include("includes/db.php");
+require_once("config/database.php");
 include("includes/header.php");
 include("functions/functions.php");
 include("includes/main.php");

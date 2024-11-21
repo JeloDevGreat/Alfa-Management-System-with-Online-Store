@@ -1,6 +1,6 @@
 <?php
 
- include_once 'includes/db.php';
+ require_once('config/database.php');
 
 /// IP address code starts /////
 function getRealUserIp(){
@@ -21,13 +21,13 @@ function getRealUserIp(){
 
 function items(){
 
-global $db;
+global $con;
 
 $ip_add = getRealUserIp();
 
 $get_items = "select * from cart where ip_add='$ip_add'";
 
-$run_items = mysqli_query($db,$get_items);
+$run_items = mysqli_query($con,$get_items);
 
 $count_items = mysqli_num_rows($run_items);
 

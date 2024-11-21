@@ -3,13 +3,13 @@
 
   session_start();
 
-  include("includes/db.php");
+  include("config/database.php");
   // include("includes/header.php");
   include("functions/functions.php");
   // include("includes/main.php");
 ?>
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="auto">
+<html lang="en">
 
   <head>
     <meta charset="utf-8">
@@ -107,11 +107,11 @@
       }
     </style> -->
   </head>
-  <body class='body-background'>
+  <body class=' body-background'>
       <main class="container ">
-          <div class="d-flex justify-content-end align-self-end m-5">
-            <form action="" method="POST" class="p-5 col-sm-1 col-md-4 m-2 bg-light rounded">
-              <div class="container dflex justify-content-center row">
+          <div class="m-5">
+            <form action="" method="POST" class="p-5 bg-light rounded">
+              <div class="container">
                 <img class=" mb-4 img-thumbnail rounded-circle w-50" src="images/alfa.jpg" alt="" width="72" height="57">
               </div>
               
@@ -405,7 +405,7 @@
 
           echo "<script>alert('You are Logged In')</script>";
 
-          echo "<script>window.open('customer/my_account.php?my_orders','_self')</script>";
+          echo "<script>window.open('homepage.php','_self')</script>";
 
           }
           else {
