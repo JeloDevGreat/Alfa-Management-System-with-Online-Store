@@ -21,7 +21,7 @@
     
     <title>Alfa SportsCity </title>
     <link href="styles/style.css" rel="stylesheet">
-    <!-- <link href="styles/backend.css" rel="stylesheet"> -->
+    <link href="styles/backend.css" rel="stylesheet">
     <link href="styles/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -107,19 +107,16 @@
       }
     </style> -->
   </head>
-  <body>
-      <main>
-        <div class="container">
-          <div class="row">
-            <div class="img-logo">
-              <img src="images/alfa-removebg-preview.png" alt="alfa logo" width="100" class=" rounded-circle" >
-            </div>
-          
-            <div class="container">
-              <p class="">Welcome to Alfa SportsCity</pc>
-            </div>
-
-            <form action="" method="POST" class="p-3">
+  <body class='body-background'>
+      <main class="container ">
+          <div class="d-flex justify-content-end align-self-end m-5">
+            <form action="" method="POST" class="p-5 col-sm-1 col-md-4 m-2 bg-light rounded">
+              <div class="container dflex justify-content-center row">
+                <img class=" mb-4 img-thumbnail rounded-circle w-50" src="images/alfa.jpg" alt="" width="72" height="57">
+              </div>
+              
+              <p class="h3">Welcome to Alfa SportsCity</p>
+              <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
               <div class="form-group form-floating m-2">
 
@@ -142,13 +139,12 @@
                 
                 <div class="invalid-feedback">Please fill out this field.</div>
               </div>
-              <div class="form-group">
-                <button name="login" value="Login" class="btn btn-primary p-2 mt-2 btn-lg" >Login</button>
+              <div class="form-group row">
+                <button name="login" value="Login" class="btn btn-primary p-2 mt-2 btn-lg mx-auto w-25" >Login</button>
               </div>
 
             </form>
           </div>
-        </div>
       </main>
 
         <!-- <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
