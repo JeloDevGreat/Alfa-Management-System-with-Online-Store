@@ -979,7 +979,7 @@ img {
   text-align: center;
 }
 .body-background{
-  background: rgb(255,255,255);
-  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(241,242,158,1) 10%, rgba(235,236,119,1) 17%, rgba(230,232,88,1) 23%, rgba(227,229,68,1) 29%, rgba(180,184,70,1) 38%, rgba(140,147,72,1) 44%, rgba(59,70,76,1) 56%);
+  background: rgb(59,70,76);
+  background: linear-gradient(0deg, rgba(59,70,76,1) 0%, rgba(235,236,119,1) 97%);
   background-repeat: no-repeat;
 }

@@ -140,7 +140,8 @@
                 <div class="invalid-feedback">Please fill out this field.</div>
               </div>
               <div class="form-group row">
-                <button name="login" value="Login" class="btn btn-primary p-2 mt-2 btn-lg mx-auto w-25" >Login</button>
+                <button name="login" value="Login" class="btn btn-primary p-2 mt-2 btn-lg mx-auto " >Login</button>
+                <button name="register" value="register" class="btn btn-warning p-2 mt-2 btn-lg mx-auto" ><a href="customer_register.php" class="text-decorate-none">Register</a></button>
               </div>
 
             </form>
