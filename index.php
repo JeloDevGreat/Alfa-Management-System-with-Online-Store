@@ -1,152 +1,62 @@
-
-<?php
-
+<?php 
   session_start();
-
-  include("config/database.php");
-  // include("includes/header.php");
-  include("functions/functions.php");
-  // include("includes/main.php");
-?>
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="utf-8">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto" rel="stylesheet">
-    <meta http-equiv="x-ua-compatible" content="IE=edge, chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  include 'includes/header.php'
   
-    <link rel="shortcut icon" href="images/tab.png" type="image/png">
-    
-    <title>Alfa SportsCity </title>
-    <link href="styles/style.css" rel="stylesheet">
-    <link href="styles/backend.css" rel="stylesheet">
-    <link href="styles/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="js/bootstrap.bundle.js"></script>
-    <!-- <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .b-example-divider {
-        width: 100%;
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
-
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
-
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .btn-bd-primary {
-        --bd-violet-bg: #712cf9;
-        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-        --bs-btn-font-weight: 600;
-        --bs-btn-color: var(--bs-white);
-        --bs-btn-bg: var(--bd-violet-bg);
-        --bs-btn-border-color: var(--bd-violet-bg);
-        --bs-btn-hover-color: var(--bs-white);
-        --bs-btn-hover-bg: #6528e0;
-        --bs-btn-hover-border-color: #6528e0;
-        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-        --bs-btn-active-color: var(--bs-btn-hover-color);
-        --bs-btn-active-bg: #5a23c8;
-        --bs-btn-active-border-color: #5a23c8;
-      }
-
-      .bd-mode-toggle {
-        z-index: 1500;
-      }
-
-      .bd-mode-toggle .dropdown-menu .active .bi {
-        display: block !important;
-      }
-    </style> -->
-  </head>
+?>
   <body class=' body-background'>
-      <main class="container ">
-          <div class="m-5">
-            <form action="" method="POST" class="p-5 bg-light rounded">
-              <div class="container">
-                <img class=" mb-4 img-thumbnail rounded-circle w-50" src="images/alfa.jpg" alt="" width="72" height="57">
-              </div>
+      <div class="container row p-0 h-100 d-flex align-items-center mx-auto">
+            <div class="col-sm-12 col-md-6 m-0 p-0 ms-auto index-photo h-75 flex-column ">
+              <p class="ethnocentric m-2 index-font-on-shirt">ALFA</p><hr class="hr-index">
+              <p class="betterlett m-2 index-font-on-shirt">Alfa SportsCity</p>
+            </div>
+            <form action="" method="POST" class="col-md-6 p-3 h-75 d-flex flex-column justify-content-center shadow mx-auto form-login">
+              <!-- <div class="m-0">
+                <img class=" mb-4 img-thumbnail rounded-circle" src="images/alfa-32x32.jpg" alt="">
+              </div> -->
               
-              <p class="h3">Welcome to Alfa SportsCity</p>
-              <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+              <!-- <p class="h5">Welcome to Alfa SportsCity</p> -->
+              <h1 class="h3 m-4 text-light fw-normal ethnocentric mx-auto">Please sign in</h1>
 
-              <div class="form-group form-floating m-2">
-
-                <input type="email" class="form-control " id="email" name="c_email" placeholder="juandelacruz@gmail.com" required>
-
-                <label for="email" class="form-label">Email address</label>
-
-                <div class="valid-feedback">Valid.</div>
-
-                <div class="invalid-feedback">Please fill out this field.</div>
+              <div class="input-group m-2 w-75 mx-auto">
+                <span class="input-group-text ethnocentric">Email</span>
+                <input type="email" class="form-control" id="email" name="c_email" placeholder="juandelacruz@gmail.com" width="20" required>
 
               </div>
-              <div class="form-group form-floating m-2">
+              <div class="input-group m-2 w-75 mx-auto">
+                <span class="input-group-text ethnocentric">Password</span>
+                <input type="password" class="form-control" id="pwd" name="c_pass" placeholder="" required>
+              </div>
+              <div class=" m-2 ethnocentric w-50 text-light mx-auto">
+                  <input type="checkbox">&nbsp;Remember me
+              </div>
+              <div class="form-group row m-3">
 
-                <input type="password" class="form-control" id="pwd" name="c_pass" placeholder="">
+                <button name="login" value="Login" class=" btn btn-lg m-1 p-1 col ethnocentric">
+                  <a class="ethnocentric index-button text-decoration-none">Login</a>
+                </button>
 
-                <label for="email" class="form-label">Password</label>
+                <button name="register" value="register" id="register" class=" btn btn-lg m-1 p-1 col  " >
+                  <a href="customer_register.php" class="text-decoration-none index-button ethnocentric">Register</a>
+                </button>
 
-                <div class="valid-feedback">Valid.</div>
+              </div>
+              <div class="justify-content-center mx-auto ">
+                <a href="#" class="text-decoration-none ethnocentric text-light m-1">Forgot Password?</a>
+                <a href="#" class="text-decoration-none ethnocentric text-light m-1">Forgot Email?</a>
+              </div>
+              <div class="socmed justify-content-center mx-auto p-4">
+                <a href="#" class="text-decoration-none ethnocentric m-3">
+                  <img src="images/facebook.png" alt="Facebook Logo" width="32">
+                </a>
+                <a href="#" class="text-decoration-none ethnocentric m-3">
+                  <img src="images/twitter.png" alt="Twitter Logo" width="32" class="img-fluid">
+                <a href="#" class="text-decoration-none ethnocentric m-3" class="img-fluid">
+                  <img src="images/google.png" alt="Google Logo" width="32" class="img-fluid">
+                </a>
                 
-                <div class="invalid-feedback">Please fill out this field.</div>
               </div>
-              <div class="form-group row">
-                <button name="login" value="Login" class="btn btn-primary p-2 mt-2 btn-lg mx-auto " >Login</button>
-                <button name="register" value="register" class="btn btn-warning p-2 mt-2 btn-lg mx-auto" ><a href="customer_register.php" class="text-decorate-none">Register</a></button>
-              </div>
-
             </form>
-          </div>
-      </main>
+      </div>
 
         <!-- <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
           <symbol id="check2" viewBox="0 0 16 16">
@@ -197,7 +107,7 @@
 
         
     <main class="form-signin w-100 m-auto">
-      <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+      <form method="POST" action="<?php //echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         <img class="mb-4" src="images/alfa.jpg" alt="" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 

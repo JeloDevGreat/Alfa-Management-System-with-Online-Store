@@ -111,7 +111,7 @@ button, select {
   text-transform: none
 }
 
-/* [type=reset], [type=submit], button, html [type=button] {
+/* [type=reset], [type=submit], button,  [type=button] {
   -webkit-appearance: button
 } */
 
@@ -318,11 +318,11 @@ canvas {
   box-sizing: inherit
 }
 
-body {
+/* body {
   min-width: 1190px;
   font-family: betterlett, sans-serif;
   font-weight: 400;
-}
+} */
 
 /* .container {
   width: 1170px;
@@ -967,7 +967,8 @@ img {
   text-align: center;
 }
 .body-background{
-  background: #3b464c;
-  background: linear-gradient(0deg, #3b464c 0%, #ebec77 100%);
-  background-repeat: no-repeat;
+  background: #ffffff;
+  /* background: linear-gradient(0deg, #3b464c 0%, #ebec77 100%); */
+  /* background-repeat: no-repeat;
+  background-size: contain; */
 }

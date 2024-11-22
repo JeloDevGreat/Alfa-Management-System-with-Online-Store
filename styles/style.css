@@ -1,8 +1,14 @@
 :root{
-    --bs-1: #E3E544;
-    --bs-2: #3B464C;
+    --bs-1: #e3e645;
+    --bs-2: #3c474d;
     --bs-3: #959A9D;
     --bs-4: #fffcfc;
+}
+.color-yellow {
+    background-color: var(--bs-1);
+}
+.color-gray{
+    background-color: var(--bs-2);
 }
 
 @font-face {
@@ -30,19 +36,15 @@
 html{
     margin:0;
     padding:0;
-    max-height:100%;
+    height: 100%;
     box-sizing:border-box;
 }
 
 
 /* General Styles */
 body {
-    /* font-family: "Roboto", Helvetica, Arial, sans-serif; */
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #333333;
+    font-size: 12px;
     overflow-x: hidden;
-    /* background:#e4e749; */
     height:100%;
 }
 /* main{
@@ -666,3 +668,144 @@ body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
+
+  /* Layout */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .index-photo {
+        border-radius: 0px 0px 0px 0px; 
+        width: 100%;
+    }
+    form{
+        border-radius: 50px 50px 0px 0px;
+        position:relative;
+        top: -20rem;
+    }
+    .index-font-on-shirt{
+        position:relative;
+        top: -8rem;
+    }
+    .hr-index{
+        position:relative;
+        top: -8rem;
+    }
+    .socmed > a > img {
+        width:24px;
+    }
+    
+  }
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    .index-photo {
+        border-radius: 30px 0px 0px 30px; 
+    }
+    .form-login{
+        border-radius: 0px 50px 50px 0px;
+    }
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    .index-photo {
+        border-radius: 30px 0px 0px 30px; 
+    }
+    .form-login{
+        border-radius: 0px 50px 50px 0px;
+    }
+  } 
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    .index-photo {
+        border-radius: 30px 0px 0px 30px; 
+    }
+    .form-login{
+        border-radius: 0px 50px 50px 0px;
+    }
+  } 
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    .index-photo {
+        border-radius: 30px 0px 0px 30px; 
+    }
+    .form-login{
+        border-radius: 0px 50px 50px 0px;
+        width:100%;
+    }
+  }
+
+  @font-face {
+    font-family: 'betterlett';
+    src: url(" ../fonts/BetterlettRegular-Ea5Lj.otf");
+    font-weight: 300;  
+    font-style: italic;
+  }
+  @font-face {
+    font-family: 'ethnocentric';
+    src: url(" ../fonts/ethnocentric_rg.otf"), url(" ../fonts/ethnocentric_rg_it.otf");
+    font-weight: 400;
+    font-style: normal;
+  }
+  .betterlett {
+    margin:auto;
+    font-family: 'betterlett', sans-serif;
+    font-weight: 400;
+  }
+    .ethnocentric {
+        margin:auto;
+        font-family: 'ethnocentric', sans-serif;
+        font-weight: 400;
+    }   
+
+.index-photo {
+    width: 100%;
+    height:fit-content;
+    background-image: url("../images/wolf-tshirt.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    opacity: 0.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    font-size: 10vw;
+    font-family: 'betterlett', sans-serif;
+    font-weight: 400;
+}
+
+.hr-index {
+    width:15rem;
+    height:100rem;
+    border: 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #333;
+    opacity: 0.9;
+
+}
+.index-font-on-shirt{
+    font-size: 4rem;
+    font-weight: 400;
+}
+.form-login{
+    margin: 0 auto;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: var(--bs-2);
+}
+.index-button {
+    width: 100%;
+    background-color: var(--bs-1);
+    color: var(--bs-4);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 10px;
+    font-size: 1rem;
+    font-weight: 400;
+}

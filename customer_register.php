@@ -4,7 +4,7 @@ session_start();
 
 require_once("config/database.php");
 include("includes/header.php");
-include("functions/functions.php");
+// include("functions/functions.php");
 // include("includes/main.php");
 
 
@@ -150,19 +150,19 @@ include("functions/functions.php");
 
               <input type="file" class="form-control" name="c_image" required>
 
-            </div>form-group Ends
+            </div>form-group Ends-->
 
-            <div class="form-group">form-group Starts
+            <div class="form-group"><!--form-group Starts-->
 
               <center>
 
                 <label> Captcha Verification </label> 
 
-                 <div class="g-recaptcha" data-sitekey="6LcHnoQaAAAAAF_WTAEPkd_XO_9XC80G6N1MjrH2"></div>
+                 <div class="g-recaptcha" data-sitekey="6LdGtoYqAAAAABc0tehtfeYbkwLY0P1nZ3XRNyeN"></div>
 
               </center>
 
-            </div>form-group Ends -->
+            </div><!--form-group Ends-->
 
             <div class="text-center"><!-- text-center Starts -->
 
@@ -307,7 +307,6 @@ if(val.length<=6)no=1;
 }
 
 </script>
-
 </body>
 
 </html>
@@ -316,15 +315,15 @@ if(val.length<=6)no=1;
 
 if(isset($_POST['register'])){
 
-// $secret = "6LcHnoQaAAAAAF3_pqQ55sZMDgaWCGcXq4ucLgkH";
+$secret = "6LdGtoYqAAAAAA38C7klgTJUibRUlDup_KYJE_gL";
 
-// $response = $_POST['g-recaptcha-response'];
+$response = $_POST['g-recaptcha-response'];
 
 $remoteip = $_SERVER['REMOTE_ADDR'];
 
-// $url = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$response&remoteip=$remoteip");
+$url = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$response&remoteip=$remoteip");
 
-// $result = json_decode($url, TRUE);
+$result = json_decode($url, TRUE);
 
 if($result['success'] == 0){
 
