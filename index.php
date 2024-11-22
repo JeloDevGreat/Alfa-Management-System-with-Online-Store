@@ -1,6 +1,6 @@
 <?php 
   session_start();
-  include 'includes/header.php'
+  include 'includes/header.php';
   
 ?>
   <body class=' body-background'>
@@ -29,6 +29,7 @@
               <div class=" m-2 ethnocentric w-50 text-light mx-auto">
                   <input type="checkbox">&nbsp;Remember me
               </div>
+              <div class="g-recaptcha mx-auto" data-sitekey="6LdGtoYqAAAAABc0tehtfeYbkwLY0P1nZ3XRNyeN"></div>
               <div class="form-group row m-3">
 
                 <button name="login" value="Login" class=" btn btn-lg m-1 p-1 col ethnocentric">
@@ -44,7 +45,9 @@
                 <a href="#" class="text-decoration-none ethnocentric text-light m-1">Forgot Password?</a>
                 <a href="#" class="text-decoration-none ethnocentric text-light m-1">Forgot Email?</a>
               </div>
-              <div class="socmed justify-content-center mx-auto p-4">
+
+              <!-- Social Media Icons -->
+              <!-- <div class="socmed justify-content-center mx-auto p-4">
                 <a href="#" class="text-decoration-none ethnocentric m-3">
                   <img src="images/facebook.png" alt="Facebook Logo" width="32">
                 </a>
@@ -54,7 +57,7 @@
                   <img src="images/google.png" alt="Google Logo" width="32" class="img-fluid">
                 </a>
                 
-              </div>
+              </div> -->
             </form>
       </div>
 
@@ -136,8 +139,8 @@
     </main> -->
 
       <!-- FOOTER -->
-      <!-- <footer class="page-footer"> -->
-  <!-- 
+      <footer class="page-footer">
+  
         <div class="footer-nav">
           <div class="container clearfix">
 
@@ -225,9 +228,9 @@
             </div>
 
           </div>
-        </div> -->
+        </div>
 
-        <!-- <div class="banners">
+        <div class="banners">
           <div class="container clearfix">
 
             <div class="banner-award">
@@ -252,7 +255,7 @@
           </div>
         </div> -->
 
-        <!-- <div class="page-footer__subline">
+       <div class="page-footer__subline">
           <div class="container clearfix">
 
             <div class="copyright">
@@ -269,68 +272,82 @@
 
           </div>
         </div>
-      </footer> -->
+      </footer>
 
       <?php
         if(isset($_POST['login'])){
 
-          $customer_email = $_POST['c_email'];
+          $secret = "6LdGtoYqAAAAAA38C7klgTJUibRUlDup_KYJE_gL";
 
-          $customer_pass = $_POST['c_pass'];
-          // $customer_name = $_POST[''];
+          $response = $_POST['g-recaptcha-response'];
 
-          $select_customer = "select * from customers where customer_email='$customer_email' AND customer_pass='$customer_pass'";
+          $remoteip = $_SERVER['REMOTE_ADDR'];
 
-          $run_customer = mysqli_query($con,$select_customer);
-          // if(mysqli_num_rows($run_customer) == 0){
-          //     echo "<script>alert('password or email is wrong')</script>";
-          //     exit();
-          // }
+          $url = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$response&remoteip=$remoteip");
 
-          $get_ip = getRealUserIp();
+          $result = json_decode($url, TRUE);
 
-          $check_customer = mysqli_num_rows($run_customer);
-          // if($get_ip != $check_customer){
-          //     echo "<script>alert('password or email is wrong')</script>";
-          //     exit();
-          // }
 
-          $select_cart = "select * from cart where ip_add='$get_ip'";
 
-          $run_cart = mysqli_query($con,$select_cart);
+          if($result['success'] == 1){
+            $customer_email = $_POST['c_email'];
 
-          $check_cart = mysqli_num_rows($run_cart);
+            $customer_pass = $_POST['c_pass'];
+            // $customer_name = $_POST[''];
 
-          if($check_customer==0){
+            $select_customer = "select * from customers where customer_email='$customer_email' AND customer_pass='$customer_pass'";
 
-          echo "<script>alert('password or email is wrong 2')</script>";
+            $run_customer = mysqli_query($con,$select_customer);
+            // if(mysqli_num_rows($run_customer) == 0){
+            //     echo "<script>alert('password or email is wrong')</script>";
+            //     exit();
+            // }
 
-          exit();
+            $get_ip = getRealUserIp();
 
+            $check_customer = mysqli_num_rows($run_customer);
+            // if($get_ip != $check_customer){
+            //     echo "<script>alert('password or email is wrong')</script>";
+            //     exit();
+            // }
+
+            $select_cart = "select * from cart where ip_add='$get_ip'";
+
+            $run_cart = mysqli_query($con,$select_cart);
+
+            $check_cart = mysqli_num_rows($run_cart);
+
+            if($check_customer==0){
+
+            echo "<script>alert('password or email is wrong 2')</script>";
+
+            exit();
+
+            }
+
+            if($check_customer==1 AND $check_cart==0){
+
+            $_SESSION['customer_email']=$customer_email;
+
+            echo "<script>alert('You are Logged In')</script>";
+
+            echo "<script>window.open('homepage.php','_self')</script>";
+
+            }
+            else {
+
+            $_SESSION['customer_email']=$customer_email;
+
+            echo "<script>alert('You are Logged In')</script>";
+
+            echo "<script>window.open('homepage.php','_self')</script>";
+
+            } 
+          }else{
+            echo "<script>alert('Please check the captcha')</script>";
+            
           }
-
-          if($check_customer==1 AND $check_cart==0){
-
-          $_SESSION['customer_email']=$customer_email;
-
-          echo "<script>alert('You are Logged In')</script>";
-
-          echo "<script>window.open('homepage.php','_self')</script>";
-
-          }
-          else {
-
-          $_SESSION['customer_email']=$customer_email;
-
-          echo "<script>alert('You are Logged In')</script>";
-
-          echo "<script>window.open('homepage.php','_self')</script>";
-
-          } 
-
-
-          }
-
+        }
         ?>
   </body>
 
