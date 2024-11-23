@@ -49,7 +49,7 @@
 
         <div class="col text-center btn-sm">
         <?php
-        if(!isset($_SESSION['c_email'])){
+        if(!isset($_SESSION['customer_email'])){
           echo '
           <a href="customer_register.php" class="login__link bg-secondary p-1 rounded text-light text-decoration-none">
            Register
