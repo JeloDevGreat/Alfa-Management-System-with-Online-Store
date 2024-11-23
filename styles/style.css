@@ -770,7 +770,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: rgb(24, 9, 9);
     text-align: center;
     font-size: 10vw;
     font-family: 'betterlett', sans-serif;
