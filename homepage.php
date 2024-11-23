@@ -4,7 +4,7 @@ session_start();
 
 require_once("config/database.php");
 include("includes/header.php");
-include("includes/main.php");
+include 'functions/functions.php';
 
 ?>
 
