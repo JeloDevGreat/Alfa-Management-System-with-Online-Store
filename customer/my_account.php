@@ -10,22 +10,12 @@ echo "<script>window.open('../checkout.php','_self')</script>";
 }else {
 
 require_once("../config/database.php");
-include("../includes/header.php");
+include("../includes/head.php");
 include("functions/functions.php");
-include("includes/main.php");
+include("includes/navbar.php");
 
 
 ?>
-  <main>
-    <!-- HERO -->
-    <div class="nero">
-      <div class="nero__heading">
-        <span class="nero__bold">My </span>Account
-      </div>
-      <p class="nero__text">
-      </p>
-    </div>
-  </main>
 
 <div id="content" ><!-- content Starts -->
 <div class="container" ><!-- container Starts -->

@@ -2,24 +2,12 @@
 
 session_start();
 
-//require_once("includes/db.php");
-include("includes/header.php");
+require_once("config/database.php");
+include("includes/head.php");
 include("functions/functions.php");
-include("includes/main.php");
+include("customer/includes/navbar.php");
 
 ?>
-
-  <main>
-    <!-- HERO -->
-    <div class="nero">
-      <div class="nero__heading">
-        <span class="nero__bold">About</span> us
-      </div>
-      <p class="nero__text">
-      </p>
-    </div>
-  </main>
-
 <div id="content" ><!-- content Starts -->
 <div class="container" ><!-- container Starts -->
 
