@@ -218,6 +218,9 @@ canvas {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale
 }
+.icon-person-circle:before {
+  content: "\F4D7"
+}
 
 .icon-down-open-1:before {
   content: "\e800"

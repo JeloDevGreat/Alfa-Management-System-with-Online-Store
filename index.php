@@ -311,7 +311,7 @@
 
           echo "<script>alert('You are Logged In')</script>";
 
-          echo "<script>window.open('homepage.php','_self')</script>";
+          echo "<script>window.open('customer/homepage.php','_self')</script>";
 
           }
           else {
@@ -320,13 +320,13 @@
 
           echo "<script>alert('You are Logged In')</script>";
 
-          echo "<script>window.open('homepage.php','_self')</script>";
+          echo "<script>window.open('customer/homepage.php','_self')</script>";
 
           } 
 
           echo "<script>alert('You are Logged In')</script>";
 
-          echo "<script>window.open('homepage.php','_self')</script>";
+          echo "<script>window.open('customer/homepage.php','_self')</script>";
 
 
           }
