@@ -42,7 +42,7 @@ echo $count_items;
 
 function total_price(){
 
-global $db;
+global $con;
 
 $ip_add = getRealUserIp();
 
@@ -50,7 +50,7 @@ $total = 0;
 
 $select_cart = "select * from cart where ip_add='$ip_add'";
 
-$run_cart = mysqli_query($db,$select_cart);
+$run_cart = mysqli_query($con,$select_cart);
 
 while($record=mysqli_fetch_array($run_cart)){
 
@@ -75,11 +75,11 @@ echo "P" . $total;
 
 function getPro(){
 
-global $db; 
+global $con; 
 
 $get_products = "select * from products order by 1 DESC LIMIT 0,6";
 
-$run_products = mysqli_query($db,$get_products);
+$run_products = mysqli_query($con,$get_products);
 
 while($row_products=mysqli_fetch_array($run_products)){
 
@@ -99,7 +99,7 @@ $product_stock = $row_products['Stock'];
 
 // $get_manufacturer = "select * from manufacturers where manufacturer_id='$manufacturer_id'";
 
-// $run_manufacturer = mysqli_query($db,$get_manufacturer);
+// $run_manufacturer = mysqli_query($con,$get_manufacturer);
 
 // $row_manufacturer = mysqli_fetch_array($run_manufacturer);
 
@@ -200,7 +200,7 @@ function getProducts(){
 
 /// getProducts function Code Starts ///
 
-global $db;
+global $con;
 
 $aWhere = array();
 
@@ -269,7 +269,7 @@ $page = $_GET['page'];
 $page=1;
 
 }
- global $db;
+ global $con;
 $start_from = ($page-1) * $per_page ;
 
 $sLimit = " order by 1 DESC LIMIT $start_from,$per_page";
@@ -278,7 +278,7 @@ $sWhere = (count($aWhere)>0?' WHERE '.implode(' or ',$aWhere):'').$sLimit;
 
 $get_products = "select * from products  ".$sWhere;
 
-$run_products = mysqli_query($db,$get_products);
+$run_products = mysqli_query($con,$get_products);
 
 while($row_products=mysqli_fetch_array($run_products)){
 
@@ -296,7 +296,7 @@ $pro_label = $row_products['product_label'];
 
 // $get_manufacturer = "select * from manufacturers where manufacturer_id='$manufacturer_id'";
 
-// $run_manufacturer = mysqli_query($db,$get_manufacturer);
+// $run_manufacturer = mysqli_query($con,$get_manufacturer);
 
 // $row_manufacturer = mysqli_fetch_array($run_manufacturer);
 
@@ -414,7 +414,7 @@ function getPaginator(){
 
 $per_page = 6;
 
-global $db;
+global $con;
 
 $aWhere = array();
 
@@ -484,7 +484,7 @@ if(isset($_REQUEST['cat'])&&is_array($_REQUEST['cat'])){
 
 // $query = "select * from products ".$sWhere;
 
-// $result = mysqli_query($db,$query);
+// $result = mysqli_query($con,$query);
 
 // $total_records = mysqli_num_rows($result);
 
