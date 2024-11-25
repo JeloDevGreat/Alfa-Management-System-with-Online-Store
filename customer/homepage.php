@@ -3,56 +3,46 @@
 session_start();
 
 require_once'../config/database.php';
-include'includes/head.php';
-include 'functions/functions.php';
+include'functions/functions.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My E-commerce Homepage</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+<?php include 'includes/head.php'; ?>
 <body>
     <?php include 'includes/navbar.php'; ?>
     <main>
-        <section class="hero">
-            <h2>Discover Our Latest Products</h2>
-            <p>Find the best products at unbeatable prices.</p>
-            <a href="products.php" class="btn">Shop Now</a>
-        </section>
-        <section class="featured-products">
-            <h2>Featured Products</h2>
-            <div class="product-list">
-                <?php
-                // Example of fetching products from a database
-                // Assuming you have a database connection set up
-                global $con;
+                <!-- Carousel -->
+        <div id="demo" class="carousel slide" data-bs-ride="carousel">
 
-                $sql = "SELECT product_id, product_title, product_price, product_img1 FROM products ORDER BY RAND() LIMIT 4";
-                $result = $con->query($sql);
-
-                if ($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()) {
-                        echo "<div class='container row product card col-md-3'>";
-                        echo "<img src='" . $row["product_img1"] . "' alt='" . $row["product_title"] . "' class='img-thumbnail'>";
-                        echo "<h3 class='card-title>" . $row["product_title"] . "</h3>";
-                        echo "<p card-body>$" . $row["product_price"] . "</p>";
-                        echo "<a href='product.php?id=" . $row["product_id"] . "' class='btn btn-primary btn-sm card-footer'>View Product</a>";
-                        echo "</div>";
-                    }
-                } else {
-                    echo "No featured products available.";
-                }
-                $con->close();
-                ?>
+            <!-- Indicators/dots -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
             </div>
-        </section>
+
+            <!-- The slideshow/carousel -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="images/banner.jpg" alt="Los Angeles" class="d-block w-100">
+                </div>
+                <div class="carousel-item">
+                    <img src="images/banner.jpg" alt="Chicago" class="d-block w-100">
+                </div>
+                <div class="carousel-item">
+                    <img src="images/banner.jpg" alt="New York" class="d-block w-100">
+                </div>
+            </div>
+
+            <!-- Left and right controls/icons -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
     </main>
-    <footer>
-        <p>&copy; 2023 My E-commerce Store. All rights reserved.</p>
-    </footer>
 </body>
 </html>
