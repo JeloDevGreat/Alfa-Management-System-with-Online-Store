@@ -4,13 +4,13 @@ require_once("../config/database.php");
 
 /// IP address code starts /////
 function getRealUserIp(){
-    switch(true){
-      case (!empty($_SERVER['HTTP_X_REAL_IP'])) : return $_SERVER['HTTP_X_REAL_IP'];
-      case (!empty($_SERVER['HTTP_CLIENT_IP'])) : return $_SERVER['HTTP_CLIENT_IP'];
-      case (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) : return $_SERVER['HTTP_X_FORWARDED_FOR'];
-      default : return $_SERVER['REMOTE_ADDR'];
-    }
- }
+    return match(true) {
+        !empty($_SERVER['HTTP_X_REAL_IP']) => $_SERVER['HTTP_X_REAL_IP'],
+        !empty($_SERVER['HTTP_CLIENT_IP']) => $_SERVER['HTTP_CLIENT_IP'],
+        !empty($_SERVER['HTTP_X_FORWARDED_FOR']) => $_SERVER['HTTP_X_FORWARDED_FOR'],
+        default => $_SERVER['REMOTE_ADDR'],
+    };
+}
 /// IP address code Ends /////
 
 // items function Starts ///
@@ -38,7 +38,7 @@ echo $count_items;
 
 function total_price(){
 
-global $db;
+global $con;
 
 $ip_add = getRealUserIp();
 
@@ -46,7 +46,7 @@ $total = 0;
 
 $select_cart = "select * from cart where ip_add='$ip_add'";
 
-$run_cart = mysqli_query($db,$select_cart);
+$run_cart = mysqli_query($con,$select_cart);
 
 while($record=mysqli_fetch_array($run_cart)){
 
@@ -56,7 +56,7 @@ $pro_qty = $record['qty'];
 
 $get_price = "select * from products where product_id='$pro_id'";
 
-$run_price = mysqli_query($db,$get_price);
+$run_price = mysqli_query($con,$get_price);
 
 while($row_price=mysqli_fetch_array($run_price)){
 
@@ -87,11 +87,11 @@ echo "P" . $total;
 
 function getPro(){
 
-global $db;
+global $con;
 
-$get_products = "select * from products order by 1 DESC LIMIT 0,8";
+$get_products = "SELECT * FROM products WHERE is_deleted = 0 ORDER BY 1 DESC LIMIT 0,6";
 
-$run_products = mysqli_query($db,$get_products);
+$run_products = mysqli_query($con,$get_products);
 
 while($row_products=mysqli_fetch_array($run_products)){
 
@@ -111,26 +111,26 @@ echo "
 
       <a href='details.php?pro_id=$pro_id' >
 
+        <img src='customer/$pro_img1' class='img-responsive' >
+
       </a>
 
-    <div class='text' >
+      <div class='text' >
 
-      <h3><a href='details.php?pro_id=$pro_id' >$pro_title</a></h3>
+        <h3><a href='details.php?pro_id=$pro_id' >$pro_title</a></h3>
+        <p class='price' >P $pro_price</p>
+        <div class='buttons' >
 
-      <p class='price' >P $pro_price</p>
+          <a href='details.php?pro_id=$pro_id' class='btn btn-default' >View details</a>
 
-      <div class='buttons' >
+          <a href='details.php?pro_id=$pro_id' class='btn btn-primary'>
 
-        <a href='details.php?pro_id=$pro_id' class='btn btn-default' >View details</a>
+            <i class='fa fa-shopping-cart'></i> Add to cart
+            
+          </a>
+        </div>
 
-        <a href='details.php?pro_id=$pro_id' class='btn btn-primary'>
-
-          <i class='fa fa-shopping-cart'></i> Add to cart
-          
-        </a>
       </div>
-
-    </div>
 
 
     </div>
@@ -141,4 +141,26 @@ echo "
 
 }
 }
+
+function getBreadcrumb() {
+  $path = $_SERVER['PHP_SELF'];
+  $path_parts = pathinfo($path);
+  $directories = explode('/', trim($path_parts['dirname'], '/'));
+  $breadcrumb = "<nav aria-label='breadcrumb'><ol class='breadcrumb'>";
+
+  $breadcrumb .= "<li class='breadcrumb-item'><a href='../'>Home</a></li>";
+
+  $dir_path = '..';
+  foreach ($directories as $dir) {
+    $dir_path .= '/' . $dir;
+    $breadcrumb .= "<li class='breadcrumb-item'><a href='$dir_path'>$dir</a></li>";
+  }
+
+  $basename = basename($path_parts['basename'], ".php");
+  $breadcrumb .= "<li class='breadcrumb-item active' aria-current='page'>{$basename}</li>";
+  $breadcrumb .= "</ol></nav>";
+
+  echo $breadcrumb;
+}
+
 ?>

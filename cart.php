@@ -3,9 +3,9 @@
 session_start();
 
 require_once("config/database.php");
-include("includes/header.php");
+include("includes/head.php");
+include("customer/includes/navbar.php");
 include("functions/functions.php");
-include("includes/main.php");
 
 ?>
 
@@ -37,7 +37,7 @@ include("includes/main.php");
             
             $ip_add = getRealUserIp();
 
-            $select_cart = "SELECT * from cart WHERE customer_ip = '$ip_add'";
+            $select_cart = "SELECT * from cart WHERE ip_add = '$ip_add'";
 
             $run_cart = mysqli_query($con,$select_cart);
 
