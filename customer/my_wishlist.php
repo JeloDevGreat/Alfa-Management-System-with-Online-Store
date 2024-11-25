@@ -1,3 +1,26 @@
+<?php 
+    session_start();
+    include'includes/head.php';
+    include'../config/database.php';
+    include'functions/functions.php';
+?>
+
+<body>
+    <?php include 'includes/navbar.php'; ?>
+    <!-- <main>
+        <nav style="--bs-breadcrumb-divider: '|';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item mx-2"><a href="homepage.php">Home</a></li>
+                <li class="breadcrumb-item active mx-2" aria-current="page"><a href="">Wishlist</a>
+
+                </li>
+                    
+            </ol>
+        </nav>
+    </main> -->
+
+    <?php //getBreadcrumb(); ?>
+
 
 <center><!-- center Starts -->
 
@@ -31,12 +54,11 @@
 
 <?php
 
-
 $customer_session = $_SESSION['customer_email'];
 
 $get_customer = "select * from customers where customer_email='$customer_session'";
 
-$run_customer = mysqli_query($con,$get_customer);
+$run_customer = mysqli_query($con, $get_customer);
 
 $row_customer = mysqli_fetch_array($run_customer);
 
@@ -44,30 +66,29 @@ $customer_id = $row_customer['customer_id'];
 
 $i = 0;
 
-
 $get_wishlist = "select * from wishlist where customer_id='$customer_id'";
 
-$run_wishlist = mysqli_query($con,$get_wishlist);
+$run_wishlist = mysqli_query($con, $get_wishlist);
 
-while($row_wishlist = mysqli_fetch_array($run_wishlist)){
+while ($row_wishlist = mysqli_fetch_array($run_wishlist)) {
 
-$wishlist_id = $row_wishlist['wishlist_id'];
+    $wishlist_id = $row_wishlist['wishlist_id'];
 
-$product_id = $row_wishlist['product_id'];
+    $product_id = $row_wishlist['product_id'];
 
-$get_products = "select * from products where product_id='$product_id'";
+    $get_products = "select * from products where product_id='$product_id'";
 
-$run_products = mysqli_query($con,$get_products);
+    $run_products = mysqli_query($con, $get_products);
 
-$row_products = mysqli_fetch_array($run_products);
+    $row_products = mysqli_fetch_array($run_products);
 
-$product_title = $row_products['product_title'];
+    $product_title = $row_products['product_title'];
 
-$product_url = $row_products['product_url'];
+    $product_url = $row_products['product_url'];
 
-$product_img1 = $row_products['product_img1'];
+    $product_img1 = $row_products['product_img1'];
 
-$i++;
+    $i++;
 
 ?>
 
@@ -91,7 +112,7 @@ $i++;
 
 <td>
 
-<a href="my_account.php?delete_wishlist=<?php echo $wishlist_id; ?>" class="btn btn-primary">
+<a href="my_account.php?delete_wishlist=<?php echo $wishlist_id; ?>" class="btn btn-danger">
 
 <i class="fa fa-trash-o"> </i> Delete
 

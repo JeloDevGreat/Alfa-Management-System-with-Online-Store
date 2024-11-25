@@ -1,7 +1,7 @@
 <?php 
   session_start();
   include 'config/database.php';
-  include 'includes/header.php';
+  include 'includes/head.php';
 ?>
   <body class=' body-background'>
       <div class="container row p-0 h-100 d-flex align-items-center mx-auto">
@@ -311,7 +311,7 @@
 
           echo "<script>alert('You are Logged In')</script>";
 
-          echo "<script>window.open('homepage.php','_self')</script>";
+          echo "<script>window.open('customer/homepage.php','_self')</script>";
 
           }
           else {
@@ -320,13 +320,13 @@
 
           echo "<script>alert('You are Logged In')</script>";
 
-          echo "<script>window.open('homepage.php','_self')</script>";
+          echo "<script>window.open('customer/homepage.php','_self')</script>";
 
           } 
 
           echo "<script>alert('You are Logged In')</script>";
 
-          echo "<script>window.open('homepage.php','_self')</script>";
+          echo "<script>window.open('customer/homepage.php','_self')</script>";
 
 
           }
