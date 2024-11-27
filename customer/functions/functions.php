@@ -100,7 +100,7 @@ function getRealUserIp(){
 
             <a href='details.php?pro_id=$pro_id' >
 
-              <img src='customer/$pro_img1' class='img-responsive' >
+              <img src='../images/$pro_img1' class='img-responsive' >
 
             </a>
 
@@ -148,25 +148,5 @@ function getRealUserIp(){
     }
 
 
-  function getBreadcrumb() {
-    $path = $_SERVER['PHP_SELF'];
-    $path_parts = pathinfo($path);
-    $directories = explode('/', trim($path_parts['dirname'], '/'));
-    $breadcrumb = "<nav aria-label='breadcrumb'><ol class='breadcrumb'>";
-
-    $breadcrumb .= "<li class='breadcrumb-item'><a href='../'>Home</a></li>";
-
-    $dir_path = '..';
-    foreach ($directories as $dir) {
-      $dir_path .= '/' . $dir;
-      $breadcrumb .= "<li class='breadcrumb-item'><a href='$dir_path'>$dir</a></li>";
-    }
-
-    $basename = basename($path_parts['basename'], ".php");
-    $breadcrumb .= "<li class='breadcrumb-item active' aria-current='page'>{$basename}</li>";
-    $breadcrumb .= "</ol></nav>";
-
-    echo $breadcrumb;
-  }
 
 ?>

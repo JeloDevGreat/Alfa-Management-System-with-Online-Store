@@ -5,22 +5,9 @@ session_start();
 require_once'../config/database.php';
 include'includes/head.php';
 include'includes/navbar.php';
-//include'functions/functions.php';
 
 ?>
 
-
-  <!-- MAIN -->
-   <main class="container-fluid">
-    HERO
-    <div class="nero container-fluid">
-      <div class="nero__heading">
-        <span class="nero__bold">SHOP</span> Cart
-      </div>
-      <p class="nero__text">
-      </p>
-    </div>
-  </main>
 
   <div id="container col-12 " ><!-- content Starts -->
     <div class="container row mx-auto" ><!-- container Starts -->
