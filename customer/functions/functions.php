@@ -13,26 +13,6 @@ function getRealUserIp(){
 }
 /// IP address code Ends /////
 
-// items function Starts ///
-
-function items(){
-
-global $con;
-
-$ip_add = getRealUserIp();
-
-$get_items = "select * from cart where ip_add='$ip_add'";
-
-$run_items = mysqli_query($con,$get_items);
-
-$count_items = mysqli_num_rows($run_items);
-
-echo $count_items;
-
-}
-
-
-// items function Ends ///
 
 // total_price function Starts //
 
@@ -78,6 +58,26 @@ $total += $sub_total;
 echo "P" . $total;
 
 
+}
+
+function update_cart(){
+
+  global $con;
+
+  if(isset($_POST['update'])){
+
+      foreach($_POST['remove'] as $remove_id){
+
+
+      $delete_product = "DELETE from cart where p_id='$remove_id'";
+
+      $run_delete = mysqli_query($con,$delete_product);
+
+      if($run_delete){
+        echo "<script>window.open('cart.php','_self')</script>";
+      }
+    }
+  }
 }
 
 
@@ -141,6 +141,23 @@ echo "
 
 }
 }
+
+function items(){
+
+  global $con;
+  
+  $ip_add = getRealUserIp();
+  
+  $get_items = "select * from cart where ip_add='$ip_add'";
+  
+  $run_items = mysqli_query($con,$get_items);
+  
+  $count_items = mysqli_num_rows($run_items);
+  
+  echo $count_items;
+  
+  }
+
 
 function getBreadcrumb() {
   $path = $_SERVER['PHP_SELF'];
