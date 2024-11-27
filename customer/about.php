@@ -2,10 +2,9 @@
 
 session_start();
 
-require_once("config/database.php");
+require_once("../config/database.php");
 include("includes/head.php");
-include("functions/functions.php");
-include("customer/includes/navbar.php");
+include("includes/navbar.php");
 
 ?>
 <div id="content" ><!-- content Starts -->

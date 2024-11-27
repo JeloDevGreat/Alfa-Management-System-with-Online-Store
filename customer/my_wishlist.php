@@ -2,7 +2,6 @@
     session_start();
     include'includes/head.php';
     include'../config/database.php';
-    include'functions/functions.php';
 ?>
 
 <body>

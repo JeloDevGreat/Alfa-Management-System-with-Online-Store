@@ -1,9 +1,8 @@
 <?php
 
-session_start();
+    session_start();
 
-require_once'../config/database.php';
-include'functions/functions.php';
+    require_once'../config/database.php';
 ?>
 
 <!DOCTYPE html>

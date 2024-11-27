@@ -11,7 +11,6 @@ echo "<script>window.open('../checkout.php','_self')</script>";
 
 require_once("../config/database.php");
 include("../includes/head.php");
-include("functions/functions.php");
 include("includes/navbar.php");
 
 

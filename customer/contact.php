@@ -2,10 +2,9 @@
 
 session_start();
 
-require'../config/database.php';
-include("includes/header.php");
-include("functions/functions.php");
-include("includes/main.php");
+require '../config/database.php';
+include("includes/head.php");
+include("includes/navbar.php");
 
 ?>
 
@@ -32,6 +31,7 @@ include("includes/main.php");
         <center><!-- center Starts -->
 
           <?php
+          global $con;
 
           $get_contact_us = "select * from contact_us";
 

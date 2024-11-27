@@ -1,7 +1,5 @@
 <?php
 
-require_once("../config/database.php");
-
 /// IP address code starts /////
 function getRealUserIp(){
     return match(true) {
@@ -16,168 +14,159 @@ function getRealUserIp(){
 
 // total_price function Starts //
 
-function total_price(){
+  function total_price(){
 
-global $con;
+    global $con;
 
-$ip_add = getRealUserIp();
+    $ip_add = getRealUserIp();
 
-$total = 0;
+    $total = 0;
 
-$select_cart = "select * from cart where ip_add='$ip_add'";
+    $select_cart = "select * from cart where ip_add='$ip_add'";
 
-$run_cart = mysqli_query($con,$select_cart);
+    $run_cart = mysqli_query($con,$select_cart);
 
-while($record=mysqli_fetch_array($run_cart)){
+    while($record=mysqli_fetch_array($run_cart)){
 
-$pro_id = $record['p_id'];
+      $pro_id = $record['p_id'];
 
-$pro_qty = $record['qty'];
+      $pro_qty = $record['qty'];
 
-$get_price = "select * from products where product_id='$pro_id'";
+      $get_price = "select * from products where product_id='$pro_id'";
 
-$run_price = mysqli_query($con,$get_price);
+      $run_price = mysqli_query($con,$get_price);
 
-while($row_price=mysqli_fetch_array($run_price)){
-
-
-$sub_total = $row_price['product_price']*$pro_qty;
-
-$total += $sub_total;
+      while($row_price=mysqli_fetch_array($run_price)){
 
 
+      $sub_total = $row_price['product_price']*$pro_qty;
 
-}
+      $total += $sub_total;
 
+      }
+    }
 
+    echo "P" . $total;
+  }
 
+  function update_cart(){
 
+    global $con;
 
-}
+    if(isset($_POST['update'])){
 
-echo "P" . $total;
-
-
-}
-
-function update_cart(){
-
-  global $con;
-
-  if(isset($_POST['update'])){
-
-      foreach($_POST['remove'] as $remove_id){
+        foreach($_POST['remove'] as $remove_id){
 
 
-      $delete_product = "DELETE from cart where p_id='$remove_id'";
+        $delete_product = "DELETE from cart where p_id='$remove_id'";
 
-      $run_delete = mysqli_query($con,$delete_product);
+        $run_delete = mysqli_query($con,$delete_product);
 
-      if($run_delete){
-        echo "<script>window.open('cart.php','_self')</script>";
+        if($run_delete){
+          echo "<script>window.open('cart.php','_self')</script>";
+        }
       }
     }
   }
-}
 
 
 
 // total_price function Ends //
 
 
-function getPro(){
+  function getPro(){
 
-global $con;
+    global $con;
 
-$get_products = "SELECT * FROM products WHERE is_deleted = 0 ORDER BY 1 DESC LIMIT 0,6";
+    $get_products = "SELECT * FROM products WHERE is_deleted = 0 ORDER BY 1 DESC LIMIT 0,6";
 
-$run_products = mysqli_query($con,$get_products);
+    $run_products = mysqli_query($con,$get_products);
 
-while($row_products=mysqli_fetch_array($run_products)){
+    while($row_products=mysqli_fetch_array($run_products)){
 
-$pro_id = $row_products['product_id'];
+      $pro_id = $row_products['product_id'];
 
-$pro_title = $row_products['product_title'];
+      $pro_title = $row_products['product_title'];
 
-$pro_price = $row_products['product_price'];
+      $pro_price = $row_products['product_price'];
 
-$pro_img1 = $row_products['product_img1'];
+      $pro_img1 = $row_products['product_img1'];
 
-echo "
+      echo "
 
-  <div class='col-md-4 col-sm-6 single' >
+        <div class='col-md-4 col-sm-6 single' >
 
-    <div class='product' >
+          <div class='product' >
 
-      <a href='details.php?pro_id=$pro_id' >
+            <a href='details.php?pro_id=$pro_id' >
 
-        <img src='customer/$pro_img1' class='img-responsive' >
+              <img src='customer/$pro_img1' class='img-responsive' >
 
-      </a>
+            </a>
 
-      <div class='text' >
+            <div class='text' >
 
-        <h3><a href='details.php?pro_id=$pro_id' >$pro_title</a></h3>
-        <p class='price' >P $pro_price</p>
-        <div class='buttons' >
+              <h3><a href='details.php?pro_id=$pro_id' >$pro_title</a></h3>
+              <p class='price' >P $pro_price</p>
+              <div class='buttons' >
 
-          <a href='details.php?pro_id=$pro_id' class='btn btn-default' >View details</a>
+                <a href='details.php?pro_id=$pro_id' class='btn btn-default' >View details</a>
 
-          <a href='details.php?pro_id=$pro_id' class='btn btn-primary'>
+                <a href='details.php?pro_id=$pro_id' class='btn btn-primary'>
 
-            <i class='fa fa-shopping-cart'></i> Add to cart
-            
-          </a>
+                  <i class='fa fa-shopping-cart'></i> Add to cart
+                  
+                </a>
+              </div>
+
+            </div>
+
+
+          </div>
+
         </div>
 
-      </div>
+      ";
 
-
-    </div>
-
-  </div>
-
-";
-
-}
-}
-
-function items(){
-
-  global $con;
-  
-  $ip_add = getRealUserIp();
-  
-  $get_items = "select * from cart where ip_add='$ip_add'";
-  
-  $run_items = mysqli_query($con,$get_items);
-  
-  $count_items = mysqli_num_rows($run_items);
-  
-  echo $count_items;
-  
+    }
   }
 
+  function items(){
 
-function getBreadcrumb() {
-  $path = $_SERVER['PHP_SELF'];
-  $path_parts = pathinfo($path);
-  $directories = explode('/', trim($path_parts['dirname'], '/'));
-  $breadcrumb = "<nav aria-label='breadcrumb'><ol class='breadcrumb'>";
+    global $con;
+    
+    $ip_add = getRealUserIp();
+    
+    $get_items = "select * from cart where ip_add='$ip_add'";
+    
+    $run_items = mysqli_query($con,$get_items);
+    
+    $count_items = mysqli_num_rows($run_items);
+    
+    echo $count_items;
+    
+    }
 
-  $breadcrumb .= "<li class='breadcrumb-item'><a href='../'>Home</a></li>";
 
-  $dir_path = '..';
-  foreach ($directories as $dir) {
-    $dir_path .= '/' . $dir;
-    $breadcrumb .= "<li class='breadcrumb-item'><a href='$dir_path'>$dir</a></li>";
+  function getBreadcrumb() {
+    $path = $_SERVER['PHP_SELF'];
+    $path_parts = pathinfo($path);
+    $directories = explode('/', trim($path_parts['dirname'], '/'));
+    $breadcrumb = "<nav aria-label='breadcrumb'><ol class='breadcrumb'>";
+
+    $breadcrumb .= "<li class='breadcrumb-item'><a href='../'>Home</a></li>";
+
+    $dir_path = '..';
+    foreach ($directories as $dir) {
+      $dir_path .= '/' . $dir;
+      $breadcrumb .= "<li class='breadcrumb-item'><a href='$dir_path'>$dir</a></li>";
+    }
+
+    $basename = basename($path_parts['basename'], ".php");
+    $breadcrumb .= "<li class='breadcrumb-item active' aria-current='page'>{$basename}</li>";
+    $breadcrumb .= "</ol></nav>";
+
+    echo $breadcrumb;
   }
-
-  $basename = basename($path_parts['basename'], ".php");
-  $breadcrumb .= "<li class='breadcrumb-item active' aria-current='page'>{$basename}</li>";
-  $breadcrumb .= "</ol></nav>";
-
-  echo $breadcrumb;
-}
 
 ?>
