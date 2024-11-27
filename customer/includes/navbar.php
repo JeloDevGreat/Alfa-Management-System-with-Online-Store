@@ -7,7 +7,7 @@
 <nav class="navbar navbar-expand-md bg-dark navbar-dark ">
     <div class="w-100 d-inline-flex align-items-center justify-content-between">
         <div class="">
-            <a class="navbar-brand mx-3" href="homepage.php">
+            <a class="navbar-brand mx-1" href="homepage.php">
                 <img src="images/alfa.jpg" alt="Alfa Sportscity logotype" style="width:40px;" class="m-2 rounded-circle">
             </a>
         </div>

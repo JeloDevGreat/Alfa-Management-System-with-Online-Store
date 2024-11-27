@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'includes/head.php'; ?>
-<body>
+<body class="">
     <?php include 'includes/navbar.php'; ?>
     <main>
         <nav style="--bs-breadcrumb-divider: '|';" aria-label="breadcrumb">
@@ -17,7 +17,7 @@
             </ol>
         </nav>
                 <!-- Carousel -->
-        <div id="demo" class="carousel slide" data-bs-ride="carousel">
+        <div id="demo" class="carousel slide " data-bs-ride="carousel">
 
             <!-- Indicators/dots -->
             <div class="carousel-indicators">

@@ -8,20 +8,6 @@ include("includes/navbar.php");
 
 ?>
 
-
-  <!-- MAIN -->
-  <main>
-    <!-- HERO -->
-    <div class="nero">
-      <div class="nero__heading">
-        <!-- <span class="nero__bold">Contact</span> Us -->
-      </div>
-      <p class="nero__text">
-      If you have any questions, please feel free to contact us, our customer service center is working for you 24/7.
-      </p>
-    </div>
-  </main>
-
   <div class="col-md-12" ><!-- col-md-12 Starts -->
 
     <div class="box w-50 mx-auto" ><!-- box Starts -->
