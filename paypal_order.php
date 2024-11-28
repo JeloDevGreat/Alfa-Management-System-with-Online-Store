@@ -2,8 +2,7 @@
 
 
 require_once("config/database.php");
-
-include("functions/functions.php");
+include'navbar.php';
 
 ?>
 
