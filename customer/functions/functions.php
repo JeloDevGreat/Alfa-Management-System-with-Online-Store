@@ -108,6 +108,7 @@ function getRealUserIp(){
 
               <h3><a href='details.php?pro_id=$pro_id' >$pro_title</a></h3>
               <p class='price' >P $pro_price</p>
+              <p>Stock:<?php ?></p>
               <div class='buttons' >
 
                 <a href='details.php?pro_id=$pro_id' class='btn btn-default' >View details</a>
@@ -146,7 +147,29 @@ function getRealUserIp(){
     echo $count_items;
     
     }
-
+    function add_to_cart($product_id, $quantity) {
+      global $con;
+  
+      // Get the user's IP address
+      $ip_add = getRealUserIp();
+  
+      // Check if the product is already in the cart
+      $check_product = "SELECT * FROM cart WHERE ip_add='$ip_add' AND p_id='$product_id'";
+      $run_check = mysqli_query($con, $check_product);
+  
+      if (mysqli_num_rows($run_check) > 0) {
+          // If the product is already in the cart, update the quantity
+          $update_quantity = "UPDATE cart SET qty = qty + $quantity WHERE ip_add='$ip_add' AND p_id='$product_id'";
+          mysqli_query($con, $update_quantity);
+      } else {
+          // If the product is not in the cart, add it
+          $insert_product = "INSERT INTO cart (p_id, ip_add, qty) VALUES ('$product_id', '$ip_add', '$quantity')";
+          mysqli_query($con, $insert_product);
+      }
+  
+      // Optionally, you can redirect or show a message
+      echo "<script>alert('Product added to cart!');</script>";
+  }
 
 
 ?>

@@ -177,7 +177,7 @@ include'includes/navbar.php';
 
             </button>
 
-            <a href="checkout.php" class="btn btn-success">
+            <a href="../checkout.php" class="btn btn-success">
 
               Proceed to Checkout <i class="fa fa-chevron-right"></i>
 
@@ -254,7 +254,7 @@ include'includes/navbar.php';
                 }
                 else{
 
-                  echo "<script>alert('Product Does Not Exist In Cart')</script>";
+                  echo "<script>alert('Product Does Not Exist In Cart')</script>"; //
 
                 }
 
