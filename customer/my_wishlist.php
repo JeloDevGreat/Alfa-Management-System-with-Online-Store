@@ -2,25 +2,12 @@
     session_start();
     include'includes/head.php';
     include'../config/database.php';
-    include'functions/functions.php';
 ?>
 
 <body>
-    <?php include 'includes/navbar.php'; ?>
-    <!-- <main>
-        <nav style="--bs-breadcrumb-divider: '|';" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item mx-2"><a href="homepage.php">Home</a></li>
-                <li class="breadcrumb-item active mx-2" aria-current="page"><a href="">Wishlist</a>
-
-                </li>
-                    
-            </ol>
-        </nav>
-    </main> -->
-
-    <?php //getBreadcrumb(); ?>
-
+    <?php include 'includes/navbar.php'; 
+    //getCapitalizedBasename();
+    ?>
 
 <center><!-- center Starts -->
 

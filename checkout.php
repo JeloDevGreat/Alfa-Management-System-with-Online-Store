@@ -2,9 +2,9 @@
 
   session_start();
 
-  require_once("config/database.php");
-  include("includes/header.php");
-  include("functions/functions.php");
+  include'config/database.php';
+  include("includes/head.php");
+  include'functions/functions.php';
   // include("includes/main.php");
 
   ?>

@@ -4,7 +4,7 @@ session_start();
 
 require_once("config/database.php");
 
-include_once 'functions/functions.php';
+include'navbar.php';
 
 ?>
 

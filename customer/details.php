@@ -2,17 +2,17 @@
 
   session_start();
 
-  require_once("config/database.php");
-  include'includes/header.php';
-  include'functions/functions.php';
-  include'includes/main.php';
+  include '../config/database.php';
+  include 'includes/head.php';
+  include 'functions/functions.php';
+  //include 'includes/main.php';
 
 ?>
 
 <?php
 
 
-$product_id = @$_GET['pro_id'];
+$product_id = $_GET['pro_id'];
 
 $get_product = "select * from products where product_url='$product_id'";
 
@@ -22,7 +22,7 @@ $check_product = mysqli_num_rows($run_product);
 
 if($check_product == 0){
 
-  echo "<script> window.open('index.php','_self') </script>";
+  echo "<script> window.open('homepage.php','_self') </script>";
 
 }
 else{

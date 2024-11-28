@@ -4,7 +4,7 @@ session_start();
 
 require_once("config/database.php");
 
-include("functions/functions.php");
+include("navbar.php");
 
 switch($_REQUEST['sAction']){
 

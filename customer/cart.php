@@ -2,25 +2,12 @@
 
 session_start();
 
-require_once("config/database.php");
-include("includes/head.php");
-include("customer/includes/navbar.php");
-include("functions/functions.php");
+require_once'../config/database.php';
+include'includes/head.php';
+include'includes/navbar.php';
 
 ?>
 
-
-  <!-- MAIN -->
-   <main class="container-fluid">
-    HERO
-    <div class="nero container-fluid">
-      <div class="nero__heading">
-        <span class="nero__bold">SHOP</span> Cart
-      </div>
-      <p class="nero__text">
-      </p>
-    </div>
-  </main>
 
   <div id="container col-12 " ><!-- content Starts -->
     <div class="container row mx-auto" ><!-- container Starts -->
@@ -190,7 +177,7 @@ include("functions/functions.php");
 
             </button>
 
-            <a href="checkout.php" class="btn btn-success">
+            <a href="../checkout.php" class="btn btn-success">
 
               Proceed to Checkout <i class="fa fa-chevron-right"></i>
 
@@ -267,7 +254,7 @@ include("functions/functions.php");
                 }
                 else{
 
-                  echo "<script>alert('Product Does Not Exist In Cart')</script>";
+                  echo "<script>alert('Product Does Not Exist In Cart')</script>"; //
 
                 }
 
@@ -286,30 +273,8 @@ include("functions/functions.php");
         ?>
 
         <?php
-
-        function update_cart(){
-
-          global $con;
-
-          if(isset($_POST['update'])){
-
-              foreach($_POST['remove'] as $remove_id){
-
-
-              $delete_product = "DELETE from cart where p_id='$remove_id'";
-
-              $run_delete = mysqli_query($con,$delete_product);
-
-              if($run_delete){
-                echo "<script>window.open('cart.php','_self')</script>";
-              }
-            }
-          }
-        }
-        // echo @$up_cart = update_cart();
-
+        update_cart();
         ?>
-
         <div class="row">
 
           <div class="col-3"><!-- col-md-3 col-sm-6 Starts -->

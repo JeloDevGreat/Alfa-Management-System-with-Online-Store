@@ -2,26 +2,11 @@
 
 session_start();
 
-require_once("config/database.php");
-include("includes/header.php");
-include("functions/functions.php");
-include("includes/main.php");
+require '../config/database.php';
+include("includes/head.php");
+include("includes/navbar.php");
 
 ?>
-
-
-  <!-- MAIN -->
-  <main>
-    <!-- HERO -->
-    <div class="nero">
-      <div class="nero__heading">
-        <!-- <span class="nero__bold">Contact</span> Us -->
-      </div>
-      <p class="nero__text">
-      If you have any questions, please feel free to contact us, our customer service center is working for you 24/7.
-      </p>
-    </div>
-  </main>
 
   <div class="col-md-12" ><!-- col-md-12 Starts -->
 
@@ -32,6 +17,7 @@ include("includes/main.php");
         <center><!-- center Starts -->
 
           <?php
+          global $con;
 
           $get_contact_us = "select * from contact_us";
 
