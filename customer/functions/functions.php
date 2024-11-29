@@ -74,63 +74,123 @@ function getRealUserIp(){
 // total_price function Ends //
 
 
-  function getPro(){
+function getPro(){
 
-    global $con;
+global $con; 
 
-    $get_products = "SELECT * FROM products WHERE is_deleted = 0 ORDER BY 1 DESC LIMIT 0,6";
+$get_products = "select * from products order by 1 DESC LIMIT 0,6";
 
-    $run_products = mysqli_query($con,$get_products);
+$run_products = mysqli_query($con,$get_products);
 
-    while($row_products=mysqli_fetch_array($run_products)){
+while($row_products=mysqli_fetch_array($run_products)){
 
-      $pro_id = $row_products['product_id'];
+$pro_id = $row_products['product_id'];
 
-      $pro_title = $row_products['product_title'];
+$pro_title = $row_products['product_title'];
 
-      $pro_price = $row_products['product_price'];
+$pro_price = $row_products['product_price'];
 
-      $pro_img1 = $row_products['product_img1'];
+$pro_img1 = $row_products['product_img1'];
 
-      echo "
+$pro_label = $row_products['product_label'];
 
-        <div class='col-md-4 col-sm-6 single' >
+$product_stock = $row_products['Stock'];
 
-          <div class='product' >
+// $manufacturer_id = $row_products['manufacturer_id'];
 
-            <a href='details.php?pro_id=$pro_id' >
+// $get_manufacturer = "select * from manufacturers where manufacturer_id='$manufacturer_id'";
 
-              <img src='../images/$pro_img1' class='img-responsive' >
+// $run_manufacturer = mysqli_query($db,$get_manufacturer);
 
-            </a>
+// $row_manufacturer = mysqli_fetch_array($run_manufacturer);
 
-            <div class='text' >
+// $manufacturer_name = $row_manufacturer['manufacturer_title'] ?? 'Unknown Manufacturer';
 
-              <h3><a href='details.php?pro_id=$pro_id' >$pro_title</a></h3>
-              <p class='price' >P $pro_price</p>
-              <p>Stock:<?php ?></p>
-              <div class='buttons' >
+$pro_psp_price = $row_products['product_psp_price'];
 
-                <a href='details.php?pro_id=$pro_id' class='btn btn-default' >View details</a>
+$pro_url = $row_products['product_url'];
 
-                <a href='details.php?pro_id=$pro_id' class='btn btn-primary'>
+if($pro_label == "Sale" or $pro_label == "Gift"){
 
-                  <i class='fa fa-shopping-cart'></i> Add to cart
-                  
-                </a>
-              </div>
+  $product_price = "<del> P$pro_price </del>";
 
-            </div>
+  $product_psp_price = "| P$pro_psp_price";
+
+}
+else{
+
+$product_psp_price = "";
+
+$product_price = "P$pro_price";
+
+}
 
 
-          </div>
+if($pro_label == ""){
+  //pass
+}
+else{
 
-        </div>
+$product_label = "
 
-      ";
+<a class='label sale' href='#' style='color:black;'>
 
-    }
-  }
+<div class='thelabel'>$pro_label</div>
+
+<div class='label-background'> </div>
+
+</a>
+
+";
+
+}
+
+
+echo "
+
+<div class='card col-md-4 m-2'>
+
+  <div class='badge badge-primary text-capitalize' style='float:left;'>$product_label</div>
+  
+    <a href='$pro_url'>
+
+      <img src='admin_area/product_images/$pro_img1' class='img-thumbnail' >
+
+    </a>
+
+  <div class='card-body align-items-center'>
+
+    <a href='$pro_url' class='card-title card-header h3 ' >$pro_title</a>
+    <div class='card-body row'>
+
+      <span class='h6 col'>Price: $product_price $product_psp_price </span>
+    
+      <span class='h6 col'>Stocks: $product_stock</span>
+
+    </div>
+
+    
+    <div class='card-footer row'>
+
+      <a href='details.php?pro_id=$pro_url' class='btn btn-primary btn-sm card-link col' >View Details</a>
+
+      <a href='details.php?pro_id=$pro_url' class='btn btn-danger btn-sm card-link col img-thumbnail'>
+
+        <i class='fa fa-shopping-cart '></i> Add To Cart
+
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+";
+
+}
+
+}
 
   function items(){
 
@@ -172,4 +232,53 @@ function getRealUserIp(){
   }
 
 
+  
+/// Products Categories Code Starts ///
+
+if(isset($_REQUEST['p_cat'])&&is_array($_REQUEST['p_cat'])){
+
+  foreach($_REQUEST['p_cat'] as $sKey=>$sVal){
+
+    if((int)$sVal!=0){
+
+    $aWhere[] = 'p_cat_id='.(int)$sVal;
+
+    }
+
+  }
+
+}
+
+/// Products Categories Code Ends ///
+
+/// Categories Code Starts ///
+
+if(isset($_REQUEST['cat'])&&is_array($_REQUEST['cat'])){
+
+  foreach($_REQUEST['cat'] as $sKey=>$sVal){
+
+    if((int)$sVal!=0){
+
+    $aWhere[] = 'cat_id='.(int)$sVal;
+
+    }
+
+  }
+
+}
+
+/// Categories Code Ends ///
+
+function getProducts(){
+
+  /// getProducts function Code Starts ///
+  
+  global $con;
+  
+  $aWhere = array();
+
+}
+
+
+//FOR LIVE SEARCH
 ?>

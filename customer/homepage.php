@@ -9,6 +9,7 @@
 <html lang="en">
 <?php include 'includes/head.php'; ?>
 <body class="">
+    <div id="livesearch">Search</div>
     <?php include 'includes/navbar.php'; ?>
     <main>
         <nav style="--bs-breadcrumb-divider: '|';" aria-label="breadcrumb">
@@ -52,23 +53,24 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="card">
-                        <div class="card-header">
+                        <?php include 'includes/sidebar.php'; ?>
+                        <!-- <div class="card-header">
                             <h3>Categories</h3>
                         </div>
                         <div class="card-body">
                             <ul class="list-group
                             list-group-flush">
                                 <?php
-                                $get_cats = "SELECT * FROM categories";
-                                $run_cats = mysqli_query($con, $get_cats);
-                                while($row_cats = mysqli_fetch_array($run_cats)){
-                                    $cat_id = $row_cats['cat_id'];
-                                    $cat_title = $row_cats['cat_title'];
-                                    echo "<li class='list-group-item'><a href='homepage.php?cat_id=$cat_id'>$cat_title</a></li>";
-                                }
+                                // $get_cats = "SELECT * FROM categories";
+                                // $run_cats = mysqli_query($con, $get_cats);
+                                // while($row_cats = mysqli_fetch_array($run_cats)){
+                                //     $cat_id = $row_cats['cat_id'];
+                                //     $cat_title = $row_cats['cat_title'];
+                                //     echo "<li class='list-group-item'><a href='homepage.php?cat_id=$cat_id'>$cat_title</a></li>";
+                                // }
                                 ?>
                             </ul>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -89,5 +91,22 @@
         </div>
     </main>
     <?php include 'includes/footer.php'; ?>
+    <script>
+        function showProducts(str) {
+            const query = document.getElementById('searchbar').value;
+        if (query == 0) {
+            document.getElementById("livesearch").innerHTML="";
+            return;
+        }
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function() {
+            if (this.readyState==4 && this.status==200) {
+            document.getElementById("livesearch").innerHTML= this.responseText;
+            }
+        }
+        xmlhttp.open("GET","livesearch.php?q=" + query,true);
+        xmlhttp.send();
+        }
+    </script>
 </body>
 </html>

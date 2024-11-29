@@ -67,7 +67,7 @@ if($count==1){
 
 $_SESSION['admin_email']=$admin_email;
 
-// echo "<script>alert('Welcome to Admin Panel')</script>";
+echo "<script>alert('Welcome to Admin Panel')</script>";
 echo "<script>window.open('index.php?dashboard','_self')</script>";
 
 }

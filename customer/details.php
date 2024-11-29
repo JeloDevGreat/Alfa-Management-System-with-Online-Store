@@ -4,8 +4,7 @@
 
   include '../config/database.php';
   include 'includes/head.php';
-  include 'functions/functions.php';
-  //include 'includes/main.php';
+  include 'includes/navbar.php';
 
 ?>
 

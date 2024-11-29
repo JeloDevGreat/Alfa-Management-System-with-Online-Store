@@ -2,6 +2,7 @@
 <?php
     include 'head.php'; 
     include 'functions/functions.php';
+    include '../config/database.php';
 ?>
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark ">
@@ -50,7 +51,7 @@
         </div>
         <div>
             <form class="d-flex">
-                <input class="form-control me-2" type="text" placeholder="Search">
+                <input class="form-control me-2" type="text" placeholder="Search" id="searchbar" onkeyup="showProducts()">
                 <button class="btn btn-primary" type="button">Search</button>
             </form>
         </div>
