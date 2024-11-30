@@ -5,7 +5,7 @@
     include '../config/database.php';
 ?>
 
-<nav class="navbar navbar-expand-md bg-dark navbar-dark ">
+<nav class="navbar navbar-expand-md bg-dark navbar-dark h-100% ">
     <div class="w-100 d-inline-flex align-items-center justify-content-between">
         <div class="">
             <a class="navbar-brand mx-1" href="homepage.php">
@@ -50,9 +50,9 @@
             </button>
         </div>
         <div>
-            <form class="d-flex">
-                <input class="form-control me-2" type="text" placeholder="Search" id="searchbar" onkeyup="showProducts()">
-                <button class="btn btn-primary" type="button">Search</button>
+            <div id="livesearch" class="w-25"></div>
+            <form action="">
+                <input type="text" id="searchbar" placeholder="Search Products" name="fname" class="dropdown"onkeyup="showResult(this.value)">
             </form>
         </div>
         <div class="icons mx-5">

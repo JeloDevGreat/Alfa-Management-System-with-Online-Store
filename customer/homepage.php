@@ -9,7 +9,6 @@
 <html lang="en">
 <?php include 'includes/head.php'; ?>
 <body class="">
-    <div id="livesearch">Search</div>
     <?php include 'includes/navbar.php'; ?>
     <main>
         <nav style="--bs-breadcrumb-divider: '|';" aria-label="breadcrumb">
@@ -92,21 +91,21 @@
     </main>
     <?php include 'includes/footer.php'; ?>
     <script>
-        function showProducts(str) {
-            const query = document.getElementById('searchbar').value;
-        if (query == 0) {
-            document.getElementById("livesearch").innerHTML="";
-            return;
-        }
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange=function() {
-            if (this.readyState==4 && this.status==200) {
-            document.getElementById("livesearch").innerHTML= this.responseText;
+        function showResult(str) {
+            if (str.length==0) {
+                document.getElementById("livesearch").innerHTML="";
+                return;
             }
-        }
-        xmlhttp.open("GET","livesearch.php?q=" + query,true);
-        xmlhttp.send();
-        }
-    </script>
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function() {
+                if (this.readyState==4 && this.status==200) {
+                document.getElementById("livesearch").innerHTML=this.responseText;
+                }
+            }
+            xmlhttp.open("GET","livesearch.php?q="+str,true);
+            xmlhttp.send();
+            }
+        </script>
+
 </body>
 </html>
