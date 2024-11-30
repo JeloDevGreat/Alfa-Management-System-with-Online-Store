@@ -1,3 +1,5 @@
+<!-- for log in comment -->
+
 <?php
 session_start();
 require_once '../config/database.php'; // Include your database connection file
