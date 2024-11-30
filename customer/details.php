@@ -6,11 +6,6 @@
   include 'includes/head.php';
   include 'includes/navbar.php';
 
-?>
-
-<?php
-
-
 $product_id = $_GET['pro_id'];
 
 $get_product = "select * from products where product_url='$product_id'";
@@ -25,7 +20,7 @@ if($check_product == 0){
 
 }
 else{
-
+//INITIALIZE THE VARIABLES
   $row_product = mysqli_fetch_array($run_product);
 
   $p_cat_id = $row_product['p_cat_id'];
@@ -56,6 +51,7 @@ else{
 
   $pro_url = $row_product['product_url'];
 
+// CHECK FOR THE LABEL
 if($pro_label == ""){
 
 
@@ -75,7 +71,7 @@ else{
   ";
 
 }
-
+//GET ALL THE PRODUCT CATEGORIES
 $get_p_cat = "select * from product_categories where p_cat_id='$p_cat_id'";
 
 $run_p_cat = mysqli_query($con,$get_p_cat);
@@ -86,22 +82,14 @@ $p_cat_title = $row_p_cat['p_cat_title'];
 
 ?>
 
-  <main>
-    <!-- HERO -->
-    <div class="nero">
-      <div class="nero__heading">
-        <span class="nero__bold">Product </span>View
-      </div>
-      <p class="nero__text">
-      </p>
-    </div>
-  </main>
+
 
   <div id="content" ><!-- content Starts -->
     <div class="container" ><!-- container Starts -->
 
       <div class="col-12"><!-- col-md-12 Starts -->
-
+      <div id='alert'>
+      </div>
         <div class="row" id="productMain"><!-- row Starts -->
 
           <div class="col-6"><!-- col-sm-6 Starts -->
@@ -169,74 +157,10 @@ $p_cat_title = $row_p_cat['p_cat_title'];
 
               <h1 class="text-center" > <?php echo $pro_title; ?> </h1>
 
-                <?php
-
-
-                if(isset($_POST['add_cart'])){
-
-                  $ip_add = getRealUserIp();
-
-                  $p_id = $pro_id;
-
-                  $product_qty = $_POST['product_qty'];
-
-                  $product_size = $_POST['product_size'];
-
-
-                  $check_product = "select * from cart where ip_add='$ip_add' AND p_id='$p_id'";
-
-                  $run_check = mysqli_query($con,$check_product);
-
-                  if(mysqli_num_rows($run_check)>0){
-
-                    echo "<script>alert('This Product is already added in cart')</script>";
-
-                    echo "<script>window.open('$pro_url','_self')</script>";
-
-                  }else {
-
-                    $get_price = "select * from products where product_id='$p_id'";
-
-                    $run_price = mysqli_query($con,$get_price);
-
-                    $row_price = mysqli_fetch_array($run_price);
-
-                    $pro_price = $row_price['product_price'];
-
-                    $pro_psp_price = $row_price['product_psp_price'];
-
-                    $pro_label = $row_price['product_label'];
-
-                    if($pro_label == "Sale" or $pro_label == "Gift"){
-
-                      $product_price = $pro_psp_price;
-
-                    }
-                    else{
-
-                      $product_price = $pro_price;
-
-                    }
-
-                    $query = "insert into cart (p_id,ip_add,qty,p_price,size) values ('$p_id','$ip_add','$product_qty','$product_price','$product_size')";
-
-                    $run_query = mysqli_query($db,$query);
-
-                    echo "<script>window.open('$pro_url','_self')</script>";
-
-                  }
-
-                }
-
-                ?>
 
               <form action="" method="post" class="form-horizontal" ><!-- form-horizontal Starts -->
 
-                <?php
-
-                if($status == "product"){
-
-                ?>
+                <?php  if($status == "product"){?>
 
                 <div class="form-group"><!-- form-group Starts -->
 
@@ -245,7 +169,7 @@ $p_cat_title = $row_p_cat['p_cat_title'];
                   <div class="col-md-7 form-control" ><!-- col-md-7 Starts -->
 
                     <label for="quantity">
-                      <input type="number" name="pro_quantity" id="pro_quantity">
+                      <input type="number" name="pro_quantity" id=" pro_quantity" min='1'>
                     </label>
 
                   </div><!-- col-md-7 Ends -->
@@ -258,25 +182,25 @@ $p_cat_title = $row_p_cat['p_cat_title'];
 
                   <div class="col-md-7" ><!-- col-md-7 Starts -->
 
-                    <select name="product_size" class="form-control" >
+                    <select name="pro_size" class="form-control" >
 
                       <option>Select a Size</option>
-                      <option>XXS</option>
-                      <option>XS</option>
-                      <option>Small</option>
-                      <option>Medium</option>
-                      <option>Large</option>
-                      <option>XL</option>
-                      <option>2XL</option>
+                      <option value='XXS'>XXS</option>
+                      <option value='XS'>XS</option>
+                      <option value='SMALL'>Small</option>
+                      <option value='MEDIUM'>Medium</option>
+                      <option value='LARGE'>Large</option>
+                      <option value='XL'>XL</option>
+                      <option value='2XL'>2XL</option>
 
                     </select>
 
-                  </div><!-- col-md-7 Ends -->
+                </div><!-- col-md-7 Ends -->
 
 
                 </div><!-- form-group Ends -->
 
-                <?php }else { ?>
+              <?php } else { ?>
 
 
                 <div class="form-group"><!-- form-group Starts -->
@@ -386,13 +310,13 @@ $p_cat_title = $row_p_cat['p_cat_title'];
 
                 ?>
 
-                <div class="text-center buttons" ><!-- text-center buttons Starts -->
+                <div class="text-center" ><!-- text-center buttons Starts -->
 
-                  <button class="btn btn-danger" type="submit" name="add_cart">
-
+                  <button class="btn btn-primary" type="submit" name="add_cart">
                     <i class="fa fa-shopping-cart" ></i> Add to Cart
 
                   </button>
+
 
                   <button class="btn btn-warning" type="submit" name="add_wishlist">
 
@@ -400,64 +324,6 @@ $p_cat_title = $row_p_cat['p_cat_title'];
 
                   </button>
 
-
-                  <?php
-
-                  if(isset($_POST['add_wishlist'])){
-
-                    if(!isset($_SESSION['customer_email'])){
-
-                      echo "<script>alert('You Must Login To Add Product In Wishlist')</script>";
-
-                      echo "<script>window.open('checkout.php','_self')</script>";
-
-                    }
-                    else{
-
-                      $customer_session = $_SESSION['customer_email'];
-
-                      $get_customer = "select * from customers where customer_email='$customer_session'";
-
-                      $run_customer = mysqli_query($con,$get_customer);
-
-                      $row_customer = mysqli_fetch_array($run_customer);
-
-                      $customer_id = $row_customer['customer_id'];
-
-                      $select_wishlist = "select * from wishlist where customer_id='$customer_id' AND product_id='$pro_id'";
-
-                      $run_wishlist = mysqli_query($con,$select_wishlist);
-
-                      $check_wishlist = mysqli_num_rows($run_wishlist);
-
-                      if($check_wishlist == 1){
-
-                        echo "<script>alert('This Product Has Been already Added In Wishlist')</script>";
-
-                        echo "<script>window.open('$pro_url','_self')</script>";
-
-                      }
-                      else{
-
-                        $insert_wishlist = "insert into wishlist (customer_id,product_id) values ('$customer_id','$pro_id')";
-
-                        $run_wishlist = mysqli_query($con,$insert_wishlist);
-
-                        if($run_wishlist){
-
-                          echo "<script> alert('Product Has Inserted Into Wishlist') </script>";
-
-                          echo "<script>window.open('$pro_url','_self')</script>";
-
-                        }
-
-                      }
-
-                    }
-
-                  }
-
-                  ?>
 
                 </div><!-- text-center buttons Ends -->
 
@@ -659,7 +525,7 @@ $p_cat_title = $row_p_cat['p_cat_title'];
 
               <div class='badge badge-primary' style='float:right;'>$product_label</div>
               
-                <a href='$pro_url'>
+                <a href='details.php?pro_id=$pro_url' data-bs-toggle='tooltip' data-bs-placement='bottom' title='$pro_url'>
 
                   <img src='../admin_area/product_images/$pro_img1' class='card-img-top' >
 
@@ -856,3 +722,116 @@ $p_cat_title = $row_p_cat['p_cat_title'];
 </html>
 
 <?php } ?>
+
+
+<?php //ADD TO CART FUNCTION
+if(isset($_POST['add_cart'])){
+  //INITIALIZE THE VARIABLES
+    $ip_add = getRealUserIp();
+
+    $p_id = $pro_id;
+    //MAKE A QUERY TO CHECK IF THE PRODUCT IS ALREADY IN THE CART
+    $check_product = "select * from cart where ip_add='$ip_add' AND p_id='$p_id'";
+    //RUN THE QUERY
+    $run_check = mysqli_query($con,$check_product);
+    //CHECK IF THE PRODUCT IS ALREADY IN THE CART
+    if(mysqli_num_rows($run_check)>0){
+
+      echo "<script>document.getElementById('alert').innerHTML = 'Product is already in your cart'</script>";
+
+      echo "<script>window.open('details.php?pro_id=$pro_url','_self')</script>";
+
+    }else {
+
+    $get_price = "select * from products where product_id='$p_id'";
+
+    $run_price = mysqli_query($con,$get_price);
+
+    $row_price = mysqli_fetch_array($run_price);
+
+    $pro_price = $row_price['product_price'];
+
+    $pro_psp_price = $row_price['product_psp_price'];
+
+    $pro_label = $row_price['product_label'];
+
+    if($pro_label == "Sale" or $pro_label == "Gift"){
+
+        $product_price = $pro_psp_price;
+
+    }
+    else{
+
+        $product_price = $pro_price;
+
+    }
+
+    $query = "INSERT INTO cart (p_id,ip_add,qty,p_price,size) VALUES ('$p_id','$ip_add','$pro_qty','$product_price','$pro_size')";
+
+    $run_query = mysqli_query($con,$query);
+
+    echo "<script>document.getElementById('alert').innerHTML = 'The Product has been added to your cart'</script>";
+
+    echo "<script>window.open('details.php?pro_id=$pro_url','_self')</script>";
+
+    }
+
+}
+
+//ADD TO WISHLIST FUNCTION
+
+if(isset($_POST['add_wishlist'])){
+
+  if(!isset($_SESSION['customer_email'])){
+
+    echo "<script>alert('You Must Login To Add Product In Wishlist')</script>";
+
+    echo "<script>window.open('checkout.php','_self')</script>";
+
+  }
+  else{
+
+    $customer_session = $_SESSION['customer_email'];
+
+    $get_customer = "select * from customers where customer_email='$customer_session'";
+
+    $run_customer = mysqli_query($con,$get_customer);
+
+    $row_customer = mysqli_fetch_array($run_customer);
+
+    $customer_id = $row_customer['customer_id'];
+
+    $select_wishlist = "select * from wishlist where customer_id='$customer_id' AND product_id='$pro_id'";
+
+    $run_wishlist = mysqli_query($con,$select_wishlist);
+
+    $check_wishlist = mysqli_num_rows($run_wishlist);
+
+    if($check_wishlist == 1){
+
+      echo "<script>alert('This Product Has Been already Added In Wishlist')</script>";
+
+      echo "<script>window.open('details.php?pro_id=$pro_url','_self')</script>";
+
+    }
+    else{
+
+      $insert_wishlist = "insert into wishlist (customer_id,product_id) values ('$customer_id','$pro_id')";
+
+      $run_wishlist = mysqli_query($con,$insert_wishlist);
+
+      if($run_wishlist){
+
+        echo "<script> alert('Product Has Inserted Into Wishlist') </script>";
+
+        echo "<script>window.open('details.php?pro_id=$pro_url','_self')</script>";
+
+      }
+
+    }
+
+  }
+
+}
+
+?>

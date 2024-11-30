@@ -59,7 +59,7 @@
       </div>
 
       <!-- FOOTER -->
-      <footer class="page-footer"> -->
+      <footer class="page-footer">
   
         <div class="footer-nav">
           <div class="container clearfix">
@@ -186,16 +186,13 @@
               Developed by Angelo Joseph Jeremias
             </div>
 
-            <div class="designby">
-              Design by Mark Joven Lacambacal
-            </div>
-
           </div>
         </div>
       </footer>
 
       <?php
         global $con;
+
         if(isset($_POST['login'])){
           //Get the following data from the form and store it in a variable
           $_SESSION['customer_email'] = $_POST['c_email'];
@@ -206,30 +203,33 @@
           $customer_pass = $_POST['c_pass'];
 
           //Make a query to the database to check if the email and password is correct and if the user is registered or not yet registered in the database 
+
           $select_customer = "select * from customers where customer_email='$customer_email' AND customer_pass='$customer_pass'";
-          //Run the query to the database 
+
+//Run the query to the database 
           $run_customer = mysqli_query($con,$select_customer);
-          //Check if the email and password is correct or not 
+
+//Check if the email and password is correct or not 
           if(mysqli_num_rows($run_customer) == 0){
               echo "<script>alert('Enter the correct email and password')</script>";
               exit();
           }
-          //Check the Ip Address of the User if there is an IP Address same of the logger user 
-          $check_customer = mysqli_num_rows($run_customer);
+//Check the Ip Address of the User, if there is an IP Address same of the logger user
+          // $check_customer = mysqli_num_rows($run_customer);
 
-          $select_cart = "select * from cart where ip_add='$get_ip'";
+          // $select_cart = "select * from cart where ip_add='$get_ip'";
 
-          $run_cart = mysqli_query($con,$select_cart);
+          // $run_cart = mysqli_query($con,$select_cart);
 
-          $check_cart = mysqli_num_rows($run_cart);
+          // $check_cart = mysqli_num_rows($run_cart);
 
-          if($check_customer==0){
+          // if($check_customer==0){
 
-          echo "<script>alert('password or email is wrong ')</script>";
+          // echo "<script>alert('password or email is wrong ')</script>";
 
-          exit();
+          // exit();
 
-          }
+          // }
 
           if($check_customer==1 AND $check_cart==0){
 
@@ -246,13 +246,13 @@
 
           echo "<script>alert('You are Logged In')</script>";
 
-          echo "<script>window.open('customer/homepage.php','_self')</script>";
+          echo "<script>window.open('customer/cart.php','_self')</script>";
 
           } 
 
-          echo "<script>alert('You are Logged In')</script>";
+          // echo "<script>alert('You are Logged In')</script>";
 
-          echo "<script>window.open('customer/homepage.php','_self')</script>";
+          // echo "<script>window.open('customer/homepage.php','_self')</script>";
 
 
           }

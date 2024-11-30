@@ -13,7 +13,7 @@ if($run_delete){
 
 echo "<script>alert('One Wishlist Product/Bundle Has Been Deleted')</script>";
 
-echo "<script>window.open('my_account.php?my_wishlist','_self')</script>";
+echo "<script>window.open('my_wishlist','_self')</script>";
 
 }
 

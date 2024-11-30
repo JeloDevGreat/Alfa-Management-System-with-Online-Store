@@ -94,7 +94,7 @@ include'includes/navbar.php';
 
           <tr><!-- tr Starts -->
             <td class="col-2">
-              <img src="admin_area/product_images/<?php echo $product_img1; ?>" >
+              <img src="../admin_area/product_images/<?php echo $product_img1; ?>" >
             </td>
             <td>
               <a href="#" > <?php echo $product_title; ?> </a>

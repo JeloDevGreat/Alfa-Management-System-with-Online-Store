@@ -1,12 +1,10 @@
 <?php 
-    session_start();
     include'includes/head.php';
     include'../config/database.php';
 ?>
 
 <body>
     <?php include 'includes/navbar.php'; 
-    //getCapitalizedBasename();
     ?>
 
 <center><!-- center Starts -->

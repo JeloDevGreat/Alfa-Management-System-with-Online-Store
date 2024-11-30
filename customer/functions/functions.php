@@ -1,5 +1,4 @@
 <?php
-
 /// IP address code starts /////
 function getRealUserIp(){
     return match(true) {
@@ -152,7 +151,7 @@ echo "
 
   <div class='badge badge-primary text-capitalize' style='float:left;'>$product_label</div>
   
-    <a href='$pro_url'>
+    <a href='details.php?pro_id=$pro_url' data-bs-toggle='tooltip' data-bs-placement='bottom' title='$pro_url'>
 
       <img src='../admin_area/product_images/$pro_img1' class='img-thumbnail' >
 
@@ -160,7 +159,7 @@ echo "
 
   <div class='card-body align-items-center'>
 
-    <a href='details.php?pro_id=$pro_url' class='card-title card-header h3 ' >$pro_title</a>
+    <a href='details.php?pro_id=$pro_url' class='card-title card-header h3 text-decoration-none' >$pro_title</a>
     <div class='card-body row'>
 
       <span class='h6 col'>Price: $product_price $product_psp_price </span>
