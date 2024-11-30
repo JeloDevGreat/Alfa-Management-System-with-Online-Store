@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2024 at 09:23 AM
+-- Generation Time: Nov 30, 2024 at 09:39 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -94,6 +94,14 @@ CREATE TABLE `cart` (
   `size` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`p_id`, `customer_id`, `ip_add`, `qty`, `p_price`, `size`) VALUES
+(1, 0, '::1', 0, '500', ''),
+(2, 0, '::1', 0, '500', 'Select a Size');
+
 -- --------------------------------------------------------
 
 --
@@ -112,11 +120,8 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`cat_id`, `cat_title`, `cat_top`, `cat_image`) VALUES
-(2, 'Feminine', 'no', 'feminelg.png'),
-(3, 'Kids', 'no', 'kidslg.jpg'),
-(4, 'Others', 'yes', 'othericon.png'),
-(5, 'Men', 'yes', 'malelg.png'),
-(6, 'Jersey', 'yes', '450366355_1007363104730613_3431465711967305147_n.jpg');
+(1, 'Jersey', 'yes', ''),
+(2, 'Shirt', 'yes', '');
 
 -- --------------------------------------------------------
 
@@ -136,7 +141,8 @@ CREATE TABLE `contact_us` (
 --
 
 INSERT INTO `contact_us` (`contact_id`, `contact_email`, `contact_heading`, `contact_desc`) VALUES
-(1, 'ecomstore@mail.com', 'Contact  To Us', 'If you have any questions, please feel free to contact us, our customer service center is working for you 24/7.');
+(1, 'alfasportscity@gmail.com', 'Contacts', 'Please contact us if you have any queries'),
+(2, 'alfasportscity@gmail.com', 'Contacts', 'Please contact us if you have any queries');
 
 -- --------------------------------------------------------
 
@@ -187,8 +193,10 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`customer_id`, `customer_name`, `customer_email`, `customer_pass`, `customer_country`, `customer_city`, `customer_contact`, `customer_address`, `customer_image`, `customer_ip`, `customer_confirm_code`) VALUES
-(0, 'Angelo Joseph Jeremias', 'angelojosephjeremias8501@gmail.com', '1234', '', '', '', '', '', '::1', ''),
-(2, 'jbhiyao', 'jhiyao@gmail.com', '1234', '', '', '', '', '', '::1', '110666284');
+(1, 'test user', 'testuser@gmail.com', '1234', '', '', '', '', '', '::1', '683291550'),
+(2, 'Angelo Joseph Tolentino Jeremias', 'angelojosephjeremias8501@gmail.com', '1234', '', '', '', '', '', '192.168.100.11', '727313639'),
+(3, 'test2', 'test2@gmail.com', '1234', '', '', '', '', '', '::1', '928273861'),
+(4, 'Test3', 'test3@gmail.com', '1234', '', '', '', '', '', '::1', '1063412957');
 
 -- --------------------------------------------------------
 
@@ -206,21 +214,6 @@ CREATE TABLE `customer_orders` (
   `order_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `order_status` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `customer_orders`
---
-
-INSERT INTO `customer_orders` (`order_id`, `customer_id`, `due_amount`, `invoice_no`, `qty`, `size`, `order_date`, `order_status`) VALUES
-(17, 2, 100, 1715523401, 2, 'Large', '2017-02-20 08:21:42', 'pending'),
-(23, 3, 20, 1762810884, 1, 'Medium', '2021-09-14 08:35:57', 'Complete'),
-(24, 4, 100, 1972602052, 1, 'Large', '2021-09-14 16:37:52', 'Complete'),
-(25, 4, 90, 2008540778, 1, 'Medium', '2021-09-14 16:43:15', 'pending'),
-(27, 5, 120, 2138906686, 1, 'Small', '2021-09-15 03:18:41', 'Complete'),
-(28, 5, 180, 361540113, 2, 'Medium', '2021-09-15 03:25:42', 'Complete'),
-(29, 3, 100, 858195683, 1, 'Large', '2021-09-15 03:14:01', 'Complete'),
-(31, 6, 245, 901707655, 1, 'Medium', '2021-09-15 03:52:18', 'Complete'),
-(32, 6, 75, 2125554712, 1, 'Large', '2021-09-15 03:52:58', 'pending');
 
 -- --------------------------------------------------------
 
@@ -255,18 +248,6 @@ CREATE TABLE `manufacturers` (
   `manufacturer_image` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Dumping data for table `manufacturers`
---
-
-INSERT INTO `manufacturers` (`manufacturer_id`, `manufacturer_title`, `manufacturer_top`, `manufacturer_image`) VALUES
-(2, 'Adidas', 'no', 'adilg.png'),
-(3, 'Nike', 'no', 'niketransl.png'),
-(4, 'Philip Plein', 'no', 'pplg.png'),
-(5, 'Lacoste', 'no', 'lacostelg.png'),
-(7, 'Polo', 'no', 'polobn.jpg'),
-(8, 'Gildan 1800', 'no', 'sample_img360.png');
-
 -- --------------------------------------------------------
 
 --
@@ -282,27 +263,6 @@ CREATE TABLE `payments` (
   `code` int(10) NOT NULL,
   `payment_date` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `payments`
---
-
-INSERT INTO `payments` (`payment_id`, `invoice_no`, `amount`, `payment_mode`, `ref_no`, `code`, `payment_date`) VALUES
-(2, 1607603019, 447, 'UBL/Omni', 5678, 33, '11/1/2016'),
-(3, 314788500, 345, 'UBL/Omni', 443, 865, '11/1/2016'),
-(4, 6906, 400, 'Western Union', 101025780, 696950, 'January 1'),
-(5, 10023, 20, 'Bank Code', 1000010101, 6969, '09/14/2021'),
-(6, 69088, 100, 'Bank Code', 1010101022, 88669, '09/14/2021'),
-(7, 1835758347, 480, 'Western Union', 1785002101, 66990, '09-04-2021'),
-(8, 1835758347, 480, 'Bank Code', 1012125550, 66500, '09-14-2021'),
-(9, 1144520, 480, 'Bank Code', 1025000020, 66990, '09-14-2021'),
-(10, 2145000000, 480, 'Bank Code', 2147483647, 66580, '09-14-2021'),
-(20, 858195683, 100, 'Bank Code', 1400256000, 47850, '09-13-2021'),
-(21, 2138906686, 120, 'Bank Code', 1455000020, 202020, '09-13-2021'),
-(22, 2138906686, 120, 'Bank Code', 1450000020, 202020, '09-15-2021'),
-(23, 361540113, 180, 'Western Union', 1470000020, 12001, '09-15-2021'),
-(24, 361540113, 180, 'UBL/Omni', 1258886650, 200, '09-15-2021'),
-(25, 901707655, 245, 'Western Union', 1200002588, 88850, '09-15-2021');
 
 -- --------------------------------------------------------
 
@@ -345,18 +305,17 @@ CREATE TABLE `products` (
   `product_keywords` text NOT NULL,
   `product_label` text NOT NULL,
   `status` varchar(255) NOT NULL,
-  `Stock` int(11) NOT NULL
+  `Stock` int(11) NOT NULL,
+  `is_deleted` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`product_id`, `p_cat_id`, `cat_id`, `manufacturer_id`, `date`, `product_title`, `product_url`, `product_img1`, `product_img2`, `product_img3`, `product_price`, `product_psp_price`, `product_desc`, `product_features`, `product_video`, `product_keywords`, `product_label`, `status`, `Stock`) VALUES
-(15, 5, 5, 8, '2021-09-15 03:46:42', 'Gildan 1800 Ultra Cotton Polo Shirt', 'cotton-polo-shirt', 'g18bulk.jpg', 'g18bulk2.jpg', 'g18bulk3.jpg', 88, 75, '\r\nTHIS IS A DEMO DESCRIPTION\r\n', '\r\n\r\nDEMO FEATURES\r\n\r\n', '\r\n\r\n\r\n\r\n', 'polo shirt', 'Sale', 'bundle', 0),
-(16, 0, 5, 0, '2024-10-10 09:13:58', 'Napo Ballers', 'navy-blue-jersey', 'napoballers.jpg', 'napoballers.jpg', 'napoballers.jpg', 575, 550, '\r\nJersey pampapapogi kaya bili na pongi\r\nkatulad ni jovski<3', '\r\n\r\n\r\nmasarap si joven\r\n', '\r\n\r\n\r\n\r\n', 'Jersey', 'New', 'product', 0),
-(17, 10, 5, 0, '2024-11-10 11:51:20', 'Celtics', 'celtics', '370043697_773991768067749_4175215693185404133_n.jpg', '370043697_773991768067749_4175215693185404133_n.jpg', '370043697_773991768067749_4175215693185404133_n.jpg', 550, 500, '\r\n\r\n', '\r\n\r\n', '\r\n\r\n', 'celtics', 'New Arrival', 'product', 0),
-(18, 10, 5, 0, '2024-11-10 12:04:46', 'Hornets', 'hornets-black-jersey', '370596157_773991938067732_4537888137857510093_n.jpg', '370596157_773991938067732_4537888137857510093_n.jpg', '370596157_773991938067732_4537888137857510093_n.jpg', 650, 550, '\r\n\r\n', '\r\n\r\n', '\r\n\r\n', 'hornets', 'New Arrival', 'product', 200);
+INSERT INTO `products` (`product_id`, `p_cat_id`, `cat_id`, `manufacturer_id`, `date`, `product_title`, `product_url`, `product_img1`, `product_img2`, `product_img3`, `product_price`, `product_psp_price`, `product_desc`, `product_features`, `product_video`, `product_keywords`, `product_label`, `status`, `Stock`, `is_deleted`) VALUES
+(1, 10, 0, 0, '2024-11-23 07:43:44', 'Blazzers', 'blazzers', 'blazers.jpg', 'blazers.jpg', 'blazers.jpg', 500, 450, '\r\n\r\n', '\r\n\r\n', '\r\n\r\n', 'blazzers', 'NEW ARRIVAL', 'product', 100, 0),
+(2, 10, 0, 0, '2024-11-26 05:49:55', 'Boston', 'boston', 'boston.jpg', 'boston.jpg', 'boston.jpg', 500, 450, '\r\n\r\n', '\r\n\r\n', '\r\n\r\n', 'boston', 'NEW', 'product', 300, 0);
 
 -- --------------------------------------------------------
 
@@ -399,12 +358,32 @@ CREATE TABLE `services` (
   `service_url` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `services`
+-- Table structure for table `stock`
 --
 
-INSERT INTO `services` (`service_id`, `service_title`, `service_image`, `service_desc`, `service_button`, `service_url`) VALUES
-(2024000001, 'sample', 'test_image', 'pogi ko', '', 'index.php');
+CREATE TABLE `stock` (
+  `Stock_ID` int(11) NOT NULL,
+  `Product_ID` int(11) NOT NULL,
+  `Product_Name` varchar(255) NOT NULL,
+  `Category_ID` int(11) NOT NULL,
+  `Quantity_Available` int(11) DEFAULT 0,
+  `Unit_Price` decimal(10,2) NOT NULL,
+  `Reorder_Level` int(11) DEFAULT 0,
+  `Supplier_ID` int(11) NOT NULL,
+  `Date_Added` date NOT NULL,
+  `Stock_Status` varchar(50) DEFAULT 'Available',
+  `Location` varchar(255) DEFAULT NULL,
+  `Discount_Price` decimal(10,2) DEFAULT NULL,
+  `Last_Updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Minimum_Stock_Level` int(11) DEFAULT 0,
+  `Maximum_Stock_Level` int(11) DEFAULT 100,
+  `Expiry_Date` date DEFAULT NULL,
+  `Batch_Number` varchar(100) DEFAULT NULL,
+  `Stock_Value` decimal(15,2) GENERATED ALWAYS AS (`Quantity_Available` * `Unit_Price`) STORED
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -420,15 +399,6 @@ CREATE TABLE `store` (
   `store_button` varchar(255) NOT NULL,
   `store_url` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `store`
---
-
-INSERT INTO `store` (`store_id`, `store_title`, `store_image`, `store_desc`, `store_button`, `store_url`) VALUES
-(4, 'London Store', 'store (3).jpg', '<p style=\"text-align: center;\"><strong>180-182 RECENTS STREET, LONDON, W1B 5BT</strong></p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut libero erat, aliquet eget mauris ut, dictum sagittis libero. Nam at dui dapibus, semper dolor ac, malesuada mi. Duis quis lobortis arcu. Vivamus sed sodales orci, non varius dolor.</p>', 'View Map', 'http://www.thedailylux.com/ecommerce'),
-(5, 'New York Store', 'store (1).png', '<p style=\"text-align: center;\"><strong>109 COLUMBUS CIRCLE, NEW YORK, NY10023</strong></p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut libero erat, aliquet eget mauris ut, dictum sagittis libero. Nam at dui dapibus, semper dolor ac, malesuada mi. Duis quis lobortis arcu. Vivamus sed sodales orci, non varius dolor.</p>', 'View Map', 'http://www.thedailylux.com/ecommerce'),
-(6, 'Paris Store', 'store (2).jpg', '<p style=\"text-align: center;\"><strong>2133 RUE SAINT-HONORE, 75001 PARIS&nbsp;</strong></p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut libero erat, aliquet eget mauris ut, dictum sagittis libero. Nam at dui dapibus, semper dolor ac, malesuada mi. Duis quis lobortis arcu. Vivamus sed sodales orci, non varius dolor.</p>', 'View Map', 'http://www.thedailylux.com/ecommerce');
 
 -- --------------------------------------------------------
 
@@ -463,17 +433,6 @@ CREATE TABLE `wishlist` (
   `customer_id` int(10) NOT NULL,
   `product_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `wishlist`
---
-
-INSERT INTO `wishlist` (`wishlist_id`, `customer_id`, `product_id`) VALUES
-(2, 2, 8),
-(3, 5, 13),
-(4, 3, 13),
-(5, 6, 15),
-(6, 7, 15);
 
 --
 -- Indexes for dumped tables
@@ -579,6 +538,12 @@ ALTER TABLE `services`
   ADD PRIMARY KEY (`service_id`);
 
 --
+-- Indexes for table `stock`
+--
+ALTER TABLE `stock`
+  ADD PRIMARY KEY (`Stock_ID`);
+
+--
 -- Indexes for table `store`
 --
 ALTER TABLE `store`
@@ -622,13 +587,13 @@ ALTER TABLE `bundle_product_relation`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `cat_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `cat_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `contact_us`
 --
 ALTER TABLE `contact_us`
-  MODIFY `contact_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `contact_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `coupons`
@@ -640,13 +605,13 @@ ALTER TABLE `coupons`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `customer_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `customer_orders`
 --
 ALTER TABLE `customer_orders`
-  MODIFY `order_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `order_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `enquiry_types`
@@ -658,13 +623,13 @@ ALTER TABLE `enquiry_types`
 -- AUTO_INCREMENT for table `manufacturers`
 --
 ALTER TABLE `manufacturers`
-  MODIFY `manufacturer_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `manufacturer_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `payment_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `payment_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pending_orders`
@@ -676,7 +641,7 @@ ALTER TABLE `pending_orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `product_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `product_categories`
@@ -688,13 +653,19 @@ ALTER TABLE `product_categories`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `service_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2024000002;
+  MODIFY `service_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2024000001;
+
+--
+-- AUTO_INCREMENT for table `stock`
+--
+ALTER TABLE `stock`
+  MODIFY `Stock_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `store`
 --
 ALTER TABLE `store`
-  MODIFY `store_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `store_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `terms`
@@ -706,7 +677,7 @@ ALTER TABLE `terms`
 -- AUTO_INCREMENT for table `wishlist`
 --
 ALTER TABLE `wishlist`
-  MODIFY `wishlist_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `wishlist_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
