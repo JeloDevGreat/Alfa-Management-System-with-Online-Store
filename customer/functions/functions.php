@@ -48,25 +48,25 @@ function getRealUserIp(){
     echo "P" . $total;
   }
 
-  function update_cart(){
+  // function update_cart(){
 
-    global $con;
+  //   global $con;
 
-    if(isset($_POST['update'])){
+  //   if(isset($_POST['update'])){
 
-        foreach($_POST['remove'] as $remove_id){
+  //       foreach($_POST['remove'] as $remove_id){
 
 
-        $delete_product = "DELETE from cart where p_id='$remove_id'";
+  //       $delete_product = "DELETE from cart where p_id='$remove_id'";
 
-        $run_delete = mysqli_query($con,$delete_product);
+  //       $run_delete = mysqli_query($con,$delete_product);
 
-        if($run_delete){
-          echo "<script>window.open('cart.php','_self')</script>";
-        }
-      }
-    }
-  }
+  //       if($run_delete){
+  //         echo "<script>window.open('cart.php','_self')</script>";
+  //       }
+  //     }
+  //   }
+  // }
 
 
 

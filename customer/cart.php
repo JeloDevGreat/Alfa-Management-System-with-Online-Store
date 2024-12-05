@@ -273,7 +273,7 @@ include'includes/navbar.php';
         ?>
 
         <?php
-        update_cart();
+        // update_cart();
         ?>
         <div class="row">
 
