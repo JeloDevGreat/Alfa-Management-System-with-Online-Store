@@ -2,13 +2,12 @@
 
   session_start();
 
-  include '../config/database.php';
+  require '../config/database.php';
   include 'includes/head.php';
   include 'includes/navbar.php';
-
-$product_id = $_GET['pro_id'];
-
-$get_product = "select * from products where product_url='$product_id'";
+//Get the product id in the url
+$product_id = $_SESSION['pro_id'];
+$get_product = "select * from products where product_id='$product_id'";
 
 $run_product = mysqli_query($con,$get_product);
 
@@ -50,7 +49,8 @@ else{
   $status = $row_product['status'];
 
   $pro_url = $row_product['product_url'];
-
+  
+  $pro_stock = $row_product['Stock'];
 // CHECK FOR THE LABEL
 if($pro_label == ""){
 
@@ -158,18 +158,17 @@ $p_cat_title = $row_p_cat['p_cat_title'];
               <h1 class="text-center" > <?php echo $pro_title; ?> </h1>
 
 
-              <form action="" method="post" class="form-horizontal" ><!-- form-horizontal Starts -->
+              <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" class="form-horizontal" ><!-- form-horizontal Starts -->
 
                 <?php  if($status == "product"){?>
 
                 <div class="form-group"><!-- form-group Starts -->
 
-                  <label class="col-md-5 control-label" >Product Quantity </label>
+                  <h3 class="col-md-5 control-label">Product Quantity </h3>
 
                   <div class="col-md-7 form-control" ><!-- col-md-7 Starts -->
-
-                    <label for="quantity">
-                      <input type="number" name="pro_quantity" id=" pro_quantity" min='1'>
+                    <label for="pro_quantity">
+                      <input type="number" name="pro_quantity" id="pro_quantity" min='1' value="">
                     </label>
 
                   </div><!-- col-md-7 Ends -->
@@ -178,13 +177,19 @@ $p_cat_title = $row_p_cat['p_cat_title'];
 
                 <div class="form-group" ><!-- form-group Starts -->
 
-                  <label class="col-md-5 control-label" >Product Size</label>
+                  
+                  <?php
+                    //MESSAGE FOR alert
+                    echo ' <div id="alert" class="alert-warning"></div>'; 
+                  ?>
+
+                  <label class="col-md-5 control-label" for="pro_size">Product Size</label>
 
                   <div class="col-md-7" ><!-- col-md-7 Starts -->
 
-                    <select name="pro_size" class="form-control" >
+                    <select id='pro_size' name="pro_size" class="form-control" >
 
-                      <option>Select a Size</option>
+                      <option values = ''>Select a Size</option>
                       <option value='XXS'>XXS</option>
                       <option value='XS'>XS</option>
                       <option value='SMALL'>Small</option>
@@ -209,7 +214,7 @@ $p_cat_title = $row_p_cat['p_cat_title'];
 
                   <div class="col-md-7 form-control" ><!-- col-md-7 Starts -->
 
-                    <label for="quantity">
+                    <label for="pro_quantity">
                       <input type="number" name="pro_quantity" id="pro_quantity">
                     </label>
 
@@ -225,10 +230,14 @@ $p_cat_title = $row_p_cat['p_cat_title'];
 
                     <select name="product_size" class="form-control" >
 
-                    <option>Select a Size</option>
-                    <option>Small</option>
-                    <option>Medium</option>
-                    <option>Large</option>
+                      <option>Select a Size</option>
+                      <option value='XXS'>XXS</option>
+                      <option value='XS'>XS</option>
+                      <option value='SMALL'>Small</option>
+                      <option value='MEDIUM'>Medium</option>
+                      <option value='LARGE'>Large</option>
+                      <option value='XL'>XL</option>
+                      <option value='2XL'>2XL</option>
 
 
                     </select>
@@ -268,6 +277,9 @@ $p_cat_title = $row_p_cat['p_cat_title'];
 
                       Product Price : P$pro_price
 
+                      </p>
+                      <p>
+                      Stock: $pro_stock
                       </p>
 
                       ";
@@ -312,15 +324,15 @@ $p_cat_title = $row_p_cat['p_cat_title'];
 
                 <div class="text-center" ><!-- text-center buttons Starts -->
 
-                  <button class="btn btn-primary" type="submit" name="add_cart">
-                    <i class="fa fa-shopping-cart" ></i> Add to Cart
+                  <button class="btn btn-primary"  name="add_to_cart"s>
+
+                    <i class="fa fa-shopping-cart" ></i>Add to Cart
 
                   </button>
 
+                  <button class="btn btn-warning"  name="add_wishlist" >
 
-                  <button class="btn btn-warning" type="submit" name="add_wishlist">
-
-                    <i class="fa fa-heart" ></i> Add to Wishlist
+                    <i class="fa fa-heart" ></i>Add to Wishlist
 
                   </button>
 
@@ -717,6 +729,19 @@ $p_cat_title = $row_p_cat['p_cat_title'];
 <script src="js/jquery.min.js"> </script>
 
 <script src="js/bootstrap.min.js"></script>
+<script>
+  // function alert(){
+  //   const result = window.confirm('Do you want to update your cart?');
+  //   if(result==true){
+  //     window.open('details.php?pro_id=$pro_url','_self');
+  //     document.getElementById('alert').innerHTML = 'Product has been updated';
+  //   }
+  //   else{
+  //     window.open('details.php?pro_id=$pro_url','_self');
+  //     document.getElementById('alert').innerHTML = 'Product has not been updated';
+  //     }
+  // }
+</script>
 
 </body>
 </html>
@@ -725,63 +750,109 @@ $p_cat_title = $row_p_cat['p_cat_title'];
 
 
 <?php //ADD TO CART FUNCTION
-if(isset($_POST['add_cart'])){
-  //INITIALIZE THE VARIABLES
+if(isset($_POST['add_to_cart'])){
+
+  if(!isset($_SESSION['customer_email'])){
+
+    echo "<script>alert('You Must Login To Add Product In Cart')</script>";
+
+    echo "<script>window.open('checkout.php','_self')</script>";
+  }
+  else{
+
+    global $con;
+
+    //GET THE CUSTOMER ID BASED ON THE IP ADDRESS OF THE USER
+    $customer_session = $_SESSION['customer_email'];
+    $get_customer_id = "select * from customers where customer_email='$customer_session'";
+    $run_customer_id = mysqli_query($con,$get_customer_id);
+    $row_customer_id = mysqli_fetch_array($run_customer_id);
+    $customer_id = $row_customer_id['customer_id'];
+
+    echo '<script>console.log("Add to cart button clicked")</script>';
+
+    //GET THE IP ADDRESS OF THE USER
     $ip_add = getRealUserIp();
 
+    echo '<script>console.log("IP Address: '.$ip_add.'")</script>';
+
+    //GET THE PRODUCT ID
     $p_id = $pro_id;
+
+    echo '<script>console.log("Product ID: '.$p_id.'")</script>';
+
+    $pro_qty = $_POST['pro_quantity'];
+    $pro_size = $_POST['pro_size'];
+    echo '<script>console.log("Product ID: '.$p_id.'")</script>';
+    echo '<script>console.log("Product Quantity: '.$pro_qty.'")</script>';
+    echo '<script>console.log("Product Size: '.$pro_size.'")</script>'; 
+
     //MAKE A QUERY TO CHECK IF THE PRODUCT IS ALREADY IN THE CART
-    $check_product = "select * from cart where ip_add='$ip_add' AND p_id='$p_id'";
+    $check_product = "SELECT * FROM cart WHERE ip_add='$ip_add' AND p_id='$p_id'";
+
+    echo '<script>console.log("'.$check_product.'")</script>';
     //RUN THE QUERY
     $run_check = mysqli_query($con,$check_product);
     //CHECK IF THE PRODUCT IS ALREADY IN THE CART
     if(mysqli_num_rows($run_check)>0){
-
-      echo "<script>document.getElementById('alert').innerHTML = 'Product is already in your cart'</script>";
-
-      echo "<script>window.open('details.php?pro_id=$pro_url','_self')</script>";
+      global $con;
+      echo "<script>window.alert('Product is already in your cart')</script>";
+      echo '<script>console.log("Product is already in your cart")</script>';
 
     }else {
+      echo '<script>console.log("Product is not in your cart.Add one")</script>';
+      //IF THE PRODUCT IS NOT IN THE CART, INSERT THE PRODUCT INTO THE CART
 
-    $get_price = "select * from products where product_id='$p_id'";
+      $query = "select * from products where product_id='$p_id'";
 
-    $run_price = mysqli_query($con,$get_price);
+      $process = mysqli_query($con,$query);
 
-    $row_price = mysqli_fetch_array($run_price);
+      $catch = mysqli_fetch_array($process);
 
-    $pro_price = $row_price['product_price'];
+      $pro_price = $catch['product_price'];
 
-    $pro_psp_price = $row_price['product_psp_price'];
+      $pro_psp_price = $catch['product_psp_price'];
 
-    $pro_label = $row_price['product_label'];
+      $pro_label = $catch['product_label'];
+   
 
-    if($pro_label == "Sale" or $pro_label == "Gift"){
+        if($pro_label == "Sale" or $pro_label == "Gift"){                                                                           
+            $product_price = $pro_psp_price;
 
-        $product_price = $pro_psp_price;
+        }
+        else{
+
+            $product_price = $pro_price;
+
+        }
+      $que = "insert into cart (p_id, customer_id, ip_add, qty, size, p_price) values ('$p_id','$customer_id','$ip_add','$pro_qty','$pro_size','$pro_price')";
+
+      echo '<script>console.log("'.$que.'")</script>';
+
+
+      if(mysqli_query($con, $que)){
+
+        echo '<script>console.log("Product has been added to your cart")</script>';
+
+      } else {
+
+        $error = mysqli_error($con);
+
+        echo "<script>console.log('Product has not been added to your cart: $error'); alert('Product has not been added to your cart: $error');</script>";
+
+        error_log("MySQL error: " . $error);
+      }
+
+      // echo "<script>window.open('details.php?pro_id=$pro_url','_self')</script>";
 
     }
-    else{
-
-        $product_price = $pro_price;
-
-    }
-
-    $query = "INSERT INTO cart (p_id,ip_add,qty,p_price,size) VALUES ('$p_id','$ip_add','$pro_qty','$product_price','$pro_size')";
-
-    $run_query = mysqli_query($con,$query);
-
-    echo "<script>document.getElementById('alert').innerHTML = 'The Product has been added to your cart'</script>";
-
-    echo "<script>window.open('details.php?pro_id=$pro_url','_self')</script>";
-
-    }
-
+  }
 }
 
 //ADD TO WISHLIST FUNCTION
 
 if(isset($_POST['add_wishlist'])){
-
+  echo '<script>console.log("Add to wishlist button clicked")</script>';
   if(!isset($_SESSION['customer_email'])){
 
     echo "<script>alert('You Must Login To Add Product In Wishlist')</script>";

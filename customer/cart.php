@@ -363,7 +363,7 @@ include'includes/navbar.php';
               
                 <a href='$pro_url'>
 
-                  <img src='admin_area/product_images/$pro_img1' class='card-img-top' >
+                  <img src='../admin_area/product_images/$pro_img1' class='card-img-top' >
 
                 </a>
 

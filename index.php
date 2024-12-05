@@ -24,7 +24,7 @@
               </div>
               <div class="input-group m-2 w-75 mx-auto">
                 <span class="input-group-text ethnocentric">Password</span>
-                <input type="password" class="form-control" id="pwd" name="c_pass" placeholder="" required>
+                <input type="password" class="form-control" id="pwd" name="c_pass" placeholder="" autocomplete=on required>
               </div>
               <div class=" m-2 ethnocentric w-50 text-light mx-auto">
                   <input type="checkbox">&nbsp;Remember me
@@ -204,7 +204,7 @@
 
           //Make a query to the database to check if the email and password is correct and if the user is registered or not yet registered in the database 
 
-          $select_customer = "select * from customers where customer_email='$customer_email' AND customer_pass='$customer_pass'";
+          $select_customer = "SELECT * from customers where customer_email='$customer_email' AND customer_pass='$customer_pass'";
 
 //Run the query to the database 
           $run_customer = mysqli_query($con,$select_customer);
