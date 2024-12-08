@@ -161,7 +161,7 @@ include'includes/navbar.php';
 
           <div class="pull-left"><!-- pull-left Starts -->
 
-            <a href="index.php" class="btn btn-default">
+            <a href="homepage.php" class="btn btn-default">
 
               <i class="fa fa-chevron-left"></i> Continue Shopping
 

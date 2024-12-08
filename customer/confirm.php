@@ -9,10 +9,9 @@ echo "<script>window.open('../checkout.php','_self')</script>";
 
 }else {
 
-include("includes/db.php");
-include("includes/header.php");
-include("functions/functions.php");
-include("includes/main.php");
+include("../config/database.php");
+include("includes/head.php");
+include("includes/navbar.php");
 
 if(isset($_GET['order_id'])){
 

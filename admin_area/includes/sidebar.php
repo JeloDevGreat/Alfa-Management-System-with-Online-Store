@@ -9,33 +9,30 @@ echo "<script>window.open('login.php','_self')</script>";
 
 else {
 
-
-
-
 ?>
 
 <nav class="navbar navbar-inverse navbar-fixed-top" ><!-- navbar navbar-inverse navbar-fixed-top Starts -->
 
-<div class="navbar-header" ><!-- navbar-header Starts -->
+    <div class="navbar-header" ><!-- navbar-header Starts -->
 
-<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse" ><!-- navbar-ex1-collapse Starts -->
-
-
-<span class="sr-only" >Toggle Navigation</span>
-
-<span class="icon-bar" ></span>
-
-<span class="icon-bar" ></span>
-
-<span class="icon-bar" ></span>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse" ><!-- navbar-ex1-collapse Starts -->
 
 
-</button><!-- navbar-ex1-collapse Ends -->
+            <span class="sr-only" >Toggle Navigation</span>
 
-<a class="navbar-brand" href="index.php?dashboard" >Seller</a>
+            <span class="icon-bar" ></span>
+
+            <span class="icon-bar" ></span>
+
+            <span class="icon-bar" ></span>
 
 
-</div><!-- navbar-header Ends -->
+        </button><!-- navbar-ex1-collapse Ends -->
+
+        <a class="navbar-brand" href="index.php?dashboard" >Seller</a>
+
+
+    </div><!-- navbar-header Ends -->
 
 <ul class="nav navbar-right top-nav" ><!-- nav navbar-right top-nav Starts -->
 
@@ -54,51 +51,49 @@ else {
 
 <li><!-- li Starts -->
 
-<a href="index.php?user_profile=<?php echo $admin_id; ?>" >
+    <a href="index.php?user_profile=<?php echo $admin_id; ?>" >
 
-<i class="fa fa-fw fa-user" ></i> Profile
-
-
-</a>
-
-</li><!-- li Ends -->
-
-<li><!-- li Starts -->
-
-<a href="index.php?view_products" >
-
-<i class="fa fa-fw fa-envelope" ></i> Products 
-
-<span class="badge" ><?php echo $count_products; ?></span>
+    <i class="fa fa-fw fa-user" ></i> Profile
 
 
-</a>
+    </a>
 
 </li><!-- li Ends -->
 
 <li><!-- li Starts -->
 
-<a href="index.php?view_customers" >
+        <a href="index.php?view_products" >
 
-<i class="fa fa-fw fa-gear" ></i> Customers
+        <i class="fa fa-fw fa-envelope" ></i> Products 
 
-<span class="badge" ><?php echo $count_customers; ?></span>
+        <span class="badge" ><?php echo $count_products; ?></span>
 
 
-</a>
+        </a>
 
 </li><!-- li Ends -->
 
 <li><!-- li Starts -->
 
-<a href="index.php?view_p_cats" >
+    <a href="index.php?view_customers" >
 
-<i class="fa fa-fw fa-gear" ></i> Product Categories
+    <i class="fa fa-fw fa-gear" ></i> Customers
 
-<span class="badge" ><?php echo $count_p_categories; ?></span>
+    <span class="badge" ><?php echo $count_customers; ?></span>
 
+    </a>
 
-</a>
+</li><!-- li Ends -->
+
+<li><!-- li Starts -->
+
+    <a href="index.php?view_p_cats" >
+
+    <i class="fa fa-fw fa-gear" ></i> Product Categories
+
+    <span class="badge" ><?php echo $count_p_categories; ?></span>
+
+    </a>
 
 </li><!-- li Ends -->
 
@@ -106,11 +101,11 @@ else {
 
 <li><!-- li Starts -->
 
-<a href="logout.php">
+    <a href="logout.php">
 
-<i class="fa fa-fw fa-power-off"> </i> Log Out
+    <i class="fa fa-fw fa-power-off"> </i> Log Out
 
-</a>
+    </a>
 
 </li><!-- li Ends -->
 
@@ -140,51 +135,49 @@ else {
 
 <li><!-- Products li Starts -->
 
-<a href="#" data-toggle="collapse" data-target="#products">
+    <a href="#" data-toggle="collapse" data-target="#products">
 
-<i class="fa fa-fw fa-table"></i> Products
+    <i class="fa fa-fw fa-table"></i> Products
 
-<i class="fa fa-fw fa-caret-down"></i>
+    <i class="fa fa-fw fa-caret-down"></i>
 
+    </a>
 
-</a>
+    <ul id="products" class="collapse">
 
-<ul id="products" class="collapse">
+        <li>
+        <a href="index.php?insert_product"> Insert Products </a>
+        </li>
 
-<li>
-<a href="index.php?insert_product"> Insert Products </a>
-</li>
+        <li>
+        <a href="index.php?view_products"> View Products </a>
+        </li>
 
-<li>
-<a href="index.php?view_products"> View Products </a>
-</li>
-
-
-</ul>
+    </ul>
 
 </li><!-- Products li Ends -->
 
 <li><!-- Bundles Li Starts --->
 
-<a href="#" data-toggle="collapse" data-target="#bundles">
+    <a href="#" data-toggle="collapse" data-target="#bundles">
 
-<i class="fa fa-fw fa-edit"></i> Bundles
+    <i class="fa fa-fw fa-edit"></i> Bundles
 
-<i class="fa fa-fw fa-caret-down"></i>
+    <i class="fa fa-fw fa-caret-down"></i>
 
-</a>
+    </a>
 
-<ul id="bundles" class="collapse">
+    <ul id="bundles" class="collapse">
 
-<li>
-<a href="index.php?insert_bundle"> Insert Bundle </a>
-</li>
+        <li>
+        <a href="index.php?insert_bundle"> Insert Bundle </a>
+        </li>
 
-<li>
-<a href="index.php?view_bundles"> View Bundles </a>
-</li>
+        <li>
+        <a href="index.php?view_bundles"> View Bundles </a>
+        </li>
 
-</ul>
+    </ul>
 
 </li><!-- Bundles Li Ends --->
 

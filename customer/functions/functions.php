@@ -84,7 +84,6 @@ $run_products = mysqli_query($con,$get_products);
 while($row_products=mysqli_fetch_array($run_products)){
 
 $pro_id = $row_products['product_id'];
-$_SESSION['pro_id'] = $pro_id;
 
 $pro_title = $row_products['product_title'];
 
@@ -173,11 +172,11 @@ echo "
     <div class='card-footer row'>
       <a href='details.php?pro_id=$pro_id' class='btn btn-primary btn-sm card-link col' >View Details</a>
 
-      <a href='details.php?pro_id=$pro_id' class='btn btn-danger btn-sm card-link col img-thumbnail'>
+      <!-- <a href='details.php?pro_id=$pro_id' class='btn btn-danger btn-sm card-link col img-thumbnail'>
 
-        <i class='fa fa-shopping-cart '></i> Add To Cart
+         <i class='fa fa-shopping-cart '></i> Add To Cart
 
-      </a>
+       </a> -->
     </div>
 
   </div>
@@ -189,7 +188,6 @@ echo "
 }
 
 }
-
   function items(){
 
     global $con;
@@ -276,7 +274,4 @@ function getProducts(){
   $aWhere = array();
 
 }
-
-
-//FOR LIVE SEARCH
 ?>

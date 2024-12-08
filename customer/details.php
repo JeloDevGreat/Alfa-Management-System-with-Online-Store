@@ -6,7 +6,9 @@
   include 'includes/head.php';
   include 'includes/navbar.php';
 //Get the product id in the url
-$product_id = $_SESSION['pro_id'];
+if(isset($_GET['pro_id'])){
+  $product_id = $_GET['pro_id'];
+}
 $get_product = "select * from products where product_id='$product_id'";
 
 $run_product = mysqli_query($con,$get_product);
@@ -761,7 +763,6 @@ if(isset($_POST['add_to_cart'])){
   else{
 
     global $con;
-
     //GET THE CUSTOMER ID BASED ON THE IP ADDRESS OF THE USER
     $customer_session = $_SESSION['customer_email'];
     $get_customer_id = "select * from customers where customer_email='$customer_session'";
@@ -769,28 +770,18 @@ if(isset($_POST['add_to_cart'])){
     $row_customer_id = mysqli_fetch_array($run_customer_id);
     $customer_id = $row_customer_id['customer_id'];
 
-    echo '<script>console.log("Add to cart button clicked")</script>';
-
     //GET THE IP ADDRESS OF THE USER
     $ip_add = getRealUserIp();
 
     echo '<script>console.log("IP Address: '.$ip_add.'")</script>';
 
-    //GET THE PRODUCT ID
-    $p_id = $pro_id;
-
-    echo '<script>console.log("Product ID: '.$p_id.'")</script>';
 
     $pro_qty = $_POST['pro_quantity'];
-    $pro_size = $_POST['pro_size'];
-    echo '<script>console.log("Product ID: '.$p_id.'")</script>';
-    echo '<script>console.log("Product Quantity: '.$pro_qty.'")</script>';
-    echo '<script>console.log("Product Size: '.$pro_size.'")</script>'; 
+    $pro_size = $_POST['pro_size'];; 
 
     //MAKE A QUERY TO CHECK IF THE PRODUCT IS ALREADY IN THE CART
-    $check_product = "SELECT * FROM cart WHERE ip_add='$ip_add' AND p_id='$p_id'";
+    $check_product = "SELECT * FROM cart WHERE ip_add='$ip_add' AND p_id='$pro_id'";
 
-    echo '<script>console.log("'.$check_product.'")</script>';
     //RUN THE QUERY
     $run_check = mysqli_query($con,$check_product);
     //CHECK IF THE PRODUCT IS ALREADY IN THE CART
@@ -803,7 +794,7 @@ if(isset($_POST['add_to_cart'])){
       echo '<script>console.log("Product is not in your cart.Add one")</script>';
       //IF THE PRODUCT IS NOT IN THE CART, INSERT THE PRODUCT INTO THE CART
 
-      $query = "select * from products where product_id='$p_id'";
+      $query = "select * from products where product_id='$pro_id'";
 
       $process = mysqli_query($con,$query);
 
@@ -825,7 +816,7 @@ if(isset($_POST['add_to_cart'])){
             $product_price = $pro_price;
 
         }
-      $que = "insert into cart (p_id, customer_id, ip_add, qty, size, p_price) values ('$p_id','$customer_id','$ip_add','$pro_qty','$pro_size','$pro_price')";
+      $que = "insert into cart (p_id, customer_id, ip_add, qty, size, p_price) values ('$pro_id','$customer_id','$ip_add','$pro_qty','$pro_size','$pro_price')";
 
       echo '<script>console.log("'.$que.'")</script>';
 
