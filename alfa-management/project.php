@@ -15,7 +15,7 @@
                             $result = $conn->query($sql);
                             while($row = $result->fetch_assoc()) {
                                 echo "
-                                <li class='my-2 mx-0 d-flex justify-content-between flex-column  border border-top-0 border-start-0 border-end-0 btn btn-lg btn-light' data-bs-toggle='modal' data-bs-target='#myModal'>
+                                <li class='my-2 mx-0 d-flex justify-content-between flex-column  border border-top-0 border-start-0 border-end-0 btn btn-lg btn-light' data-bs-toggle='modal' data-bs-target='#".$row['projectID']."'>
                                 ".$row['projectName']."
                                 <div class='dropdown'>
                                     <button type='button' class='btn btn-light text-dark dropdown-toggle' data-bs-toggle='dropdown'>
@@ -27,23 +27,29 @@
                                 </div>
                                 
                                 <!-- The Modal -->
-                                <div class='modal' id='myModal'>
+                                <div class='modal fade' id='".$row['projectID']."'>
                                 <div class='modal-dialog'>
                                     <div class='modal-content'>
 
                                     <!-- Modal Header -->
                                     <div class='modal-header'>
-                                        <h4 class='modal-title'>Modal Heading</h4>
+                                        <h4 class='modal-title mx-auto'>".$row['projectName']."</h4>
                                         <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
                                     </div>
 
                                     <!-- Modal body -->
                                     <div class='modal-body'>
-                                        Modal body..
+                                        <p>Start of the Project:".$row['projectStart']."</p>
+                                        <p>End of the Project: ".$row['projectEnd']."</p>
+                                        <p> Quantity:".$row['projectQuantity']."</p>
+                                        <p> Description: ".$row['projectDescription']."</p>
+                                        <p>Project Status: ".$row['projectStatus']."</p>
                                     </div>
 
                                     <!-- Modal footer -->
                                     <div class='modal-footer'>
+                                        <a href='#' class='btn btn-primary'>Edit</a>
+                                        <a href='#' class='btn btn-danger'>Delete</a>
                                         <button type='button' class='btn btn-danger' data-bs-dismiss='modal'>Close</button>
                                     </div>
 
