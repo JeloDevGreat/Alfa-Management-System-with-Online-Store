@@ -1,5 +1,5 @@
 <?php
-$aMan  = array();
+// $aMan  = array();
 
 $aPCat = array();
 
@@ -280,7 +280,7 @@ if(isset($_REQUEST['cat'])&&is_array($_REQUEST['cat'])){
 
                 <?php
 
-                $get_p_cats = "SELECT * FROM product_categories WHERE p_cat_top='yes'";
+                $get_p_cats = "SELECT * FROM product_categories WHERE is_top='1'";
 
                 $run_p_cats = mysqli_query($con,$get_p_cats);
 
@@ -333,7 +333,7 @@ if(isset($_REQUEST['cat'])&&is_array($_REQUEST['cat'])){
 
                 }
 
-                $get_p_cats = "select * from product_categories where p_cat_top='no'";
+                $get_p_cats = "select * from product_categories where is_top='0'";
 
                 $run_p_cats = mysqli_query($con,$get_p_cats);
 
@@ -445,7 +445,7 @@ if(isset($_REQUEST['cat'])&&is_array($_REQUEST['cat'])){
 
                 <?php
 
-                    $get_cat = "select * from categories where cat_top='yes'";
+                    $get_cat = "select * from categories where is_top='1'";
 
                     $run_cat = mysqli_query($con,$get_cat);
 
@@ -453,7 +453,7 @@ if(isset($_REQUEST['cat'])&&is_array($_REQUEST['cat'])){
 
                         $cat_id = $row_cat['cat_id'];
 
-                        $cat_title = $row_cat['cat_title'];
+                        $cat_title = $row_cat['category_name'];
 
                         $cat_image = $row_cat['cat_image'];
 
@@ -496,7 +496,7 @@ if(isset($_REQUEST['cat'])&&is_array($_REQUEST['cat'])){
                     }
 
 
-                    $get_cat = "select * from categories where cat_top='no'";
+                    $get_cat = "select * from categories where is_top='0'";
 
                     $run_cat = mysqli_query($con,$get_cat);
 
@@ -504,7 +504,7 @@ if(isset($_REQUEST['cat'])&&is_array($_REQUEST['cat'])){
 
                         $cat_id = $row_cat['cat_id'];
 
-                        $cat_title = $row_cat['cat_title'];
+                        $cat_title = $row_cat['category_name'];
 
                         $cat_image = $row_cat['cat_image'];
 

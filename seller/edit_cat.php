@@ -25,7 +25,7 @@ $row_edit = mysqli_fetch_array($run_edit);
 
 $c_id = $row_edit['cat_id'];
 
-$c_title = $row_edit['cat_title'];
+$c_title = $row_edit['category_name'];
 
 $c_top = $row_edit['cat_top'];
 

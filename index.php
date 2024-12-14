@@ -206,10 +206,8 @@
 
           $select_customer = "SELECT * from customers where customer_email='$customer_email' AND customer_pass='$customer_pass'";
 
-//Run the query to the database 
           $run_customer = mysqli_query($con,$select_customer);
 
-//Check if the email and password is correct or not 
           if(mysqli_num_rows($run_customer) == 0){
               echo "<script>alert('Enter the correct email and password')</script>";
               exit();
@@ -231,29 +229,26 @@
 
           // }
 
-          if($check_customer==1 AND $check_cart==0){
+          // if($check_customer==1 AND $check_cart==0){
 
-          $_SESSION['customer_email'] = $customer_email;
-
-          echo "<script>alert('You are Logged In')</script>";
-
-          echo "<script>window.open('customer/homepage.php','_self')</script>";
-
-          }
-          else {
-
-          $_SESSION['customer_email']=$customer_email;
-
-          echo "<script>alert('You are Logged In')</script>";
-
-          echo "<script>window.open('customer/cart.php','_self')</script>";
-
-          } 
+          // $_SESSION['customer_email'] = $customer_email;
 
           // echo "<script>alert('You are Logged In')</script>";
 
           // echo "<script>window.open('customer/homepage.php','_self')</script>";
 
+          // }
+          // else {
+
+          // $_SESSION['customer_email']=$customer_email;
+
+          // echo "<script>alert('You are Logged In')</script>";
+
+          // echo "<script>window.open('customer/cart.php','_self')</script>";
+
+          // } 
+          echo "<script>alert('You are Logged In')</script>";
+          echo "<script>window.open('customer/homepage.php','_self')</script>";
 
           }
 

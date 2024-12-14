@@ -122,7 +122,7 @@ else {
 
         $p_cat_title = $_POST['p_cat_title'];
 
-        $p_cat_top = $_POST['p_cat_top'];
+        // $p_cat_top = $_POST['p_cat_top'];
 
         $p_cat_image = $_FILES['p_cat_image']['name'];
 
@@ -130,7 +130,7 @@ else {
 
         move_uploaded_file($temp_name,"other_images/$p_cat_image");
 
-        $insert_p_cat = "INSERT INTO product_categories (p_cat_title,p_cat_top,p_cat_image) VALUES('$p_cat_title','$p_cat_top','$p_cat_image')";
+        $insert_p_cat = "INSERT INTO product_categories (p_cat_title,p_cat_image) VALUES('$p_cat_title','$p_cat_image')";
 
         $run_p_cat = mysqli_query($con,$insert_p_cat);
 

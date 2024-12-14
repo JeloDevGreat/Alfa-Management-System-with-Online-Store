@@ -7,10 +7,12 @@
   include'functions/functions.php';
   // include("includes/main.php");
 
-  ?>
-<!-- 
+  
 
-    MAIN
+  ?>
+
+
+    <!-- MAIN
     <main>
       HERO
       <div class="nero">
@@ -33,7 +35,9 @@
 
       if(!isset($_SESSION['customer_email'])){
         include("customer/customer_login.php");
-      }else{
+      }else{?>
+
+      <?php 
         include("payment_options.php");
       }
 

@@ -5,11 +5,10 @@
   require '../config/database.php';
   include 'includes/head.php';
   include 'includes/navbar.php';
-//Get the product id in the url
-if(isset($_GET['pro_id'])){
-  $product_id = $_GET['pro_id'];
-}
-$get_product = "select * from products where product_id='$product_id'";
+
+  $pro_id = $_GET['pro_id'];
+
+$get_product = "select * from products where product_id='$pro_id'";
 
 $run_product = mysqli_query($con,$get_product);
 
@@ -17,7 +16,7 @@ $check_product = mysqli_num_rows($run_product);
 
 if($check_product == 0){
 
-  echo "<script> window.open('homepage.php','_self') </script>";
+  // echo "<script> window.open('homepage.php','_self') </script>";
 
 }
 else{
@@ -52,7 +51,7 @@ else{
 
   $pro_url = $row_product['product_url'];
   
-  $pro_stock = $row_product['Stock'];
+  // $pro_stock = $row_product['Stock'];
 // CHECK FOR THE LABEL
 if($pro_label == ""){
 
@@ -80,7 +79,7 @@ $run_p_cat = mysqli_query($con,$get_p_cat);
 
 $row_p_cat = mysqli_fetch_array($run_p_cat);
 
-$p_cat_title = $row_p_cat['p_cat_title'];
+// $p_cat_title = $row_p_cat['p_cat_title'];
 
 ?>
 
@@ -160,7 +159,7 @@ $p_cat_title = $row_p_cat['p_cat_title'];
               <h1 class="text-center" > <?php echo $pro_title; ?> </h1>
 
 
-              <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" class="form-horizontal" ><!-- form-horizontal Starts -->
+              <form action="" method="POST" class="form-horizontal" ><!-- form-horizontal Starts -->
 
                 <?php  if($status == "product"){?>
 
@@ -279,11 +278,6 @@ $p_cat_title = $row_p_cat['p_cat_title'];
 
                       Product Price : P$pro_price
 
-                      </p>
-                      <p>
-                      Stock: $pro_stock
-                      </p>
-
                       ";
 
                   }
@@ -325,7 +319,7 @@ $p_cat_title = $row_p_cat['p_cat_title'];
                 ?>
 
                 <div class="text-center" ><!-- text-center buttons Starts -->
-
+                  <?php echo '<p>'.$pro_id.'</p>'?>
                   <button class="btn btn-primary"  name="add_to_cart"s>
 
                     <i class="fa fa-shopping-cart" ></i>Add to Cart
@@ -731,19 +725,6 @@ $p_cat_title = $row_p_cat['p_cat_title'];
 <script src="js/jquery.min.js"> </script>
 
 <script src="js/bootstrap.min.js"></script>
-<script>
-  // function alert(){
-  //   const result = window.confirm('Do you want to update your cart?');
-  //   if(result==true){
-  //     window.open('details.php?pro_id=$pro_url','_self');
-  //     document.getElementById('alert').innerHTML = 'Product has been updated';
-  //   }
-  //   else{
-  //     window.open('details.php?pro_id=$pro_url','_self');
-  //     document.getElementById('alert').innerHTML = 'Product has not been updated';
-  //     }
-  // }
-</script>
 
 </body>
 </html>
@@ -758,7 +739,7 @@ if(isset($_POST['add_to_cart'])){
 
     echo "<script>alert('You Must Login To Add Product In Cart')</script>";
 
-    echo "<script>window.open('checkout.php','_self')</script>";
+    echo "<script>window.open('../index.php','_self')</script>";
   }
   else{
 
@@ -773,15 +754,11 @@ if(isset($_POST['add_to_cart'])){
     //GET THE IP ADDRESS OF THE USER
     $ip_add = getRealUserIp();
 
-    echo '<script>console.log("IP Address: '.$ip_add.'")</script>';
-
-
     $pro_qty = $_POST['pro_quantity'];
     $pro_size = $_POST['pro_size'];; 
 
     //MAKE A QUERY TO CHECK IF THE PRODUCT IS ALREADY IN THE CART
     $check_product = "SELECT * FROM cart WHERE ip_add='$ip_add' AND p_id='$pro_id'";
-
     //RUN THE QUERY
     $run_check = mysqli_query($con,$check_product);
     //CHECK IF THE PRODUCT IS ALREADY IN THE CART
@@ -791,9 +768,7 @@ if(isset($_POST['add_to_cart'])){
       echo '<script>console.log("Product is already in your cart")</script>';
 
     }else {
-      echo '<script>console.log("Product is not in your cart.Add one")</script>';
-      //IF THE PRODUCT IS NOT IN THE CART, INSERT THE PRODUCT INTO THE CART
-
+      //GET THE DATA
       $query = "select * from products where product_id='$pro_id'";
 
       $process = mysqli_query($con,$query);
@@ -834,7 +809,6 @@ if(isset($_POST['add_to_cart'])){
         error_log("MySQL error: " . $error);
       }
 
-      // echo "<script>window.open('details.php?pro_id=$pro_url','_self')</script>";
 
     }
   }

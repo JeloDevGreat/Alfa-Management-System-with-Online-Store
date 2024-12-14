@@ -89,26 +89,26 @@ $new_p_cat_image = $row_edit['p_cat_image'];
 </div>
 
 </div><!-- form-group Ends -->
-
-<div class="form-group" ><!-- form-group Starts -->
+<!-- 
+<div class="form-group" > form-group Starts 
 
 <label class="col-md-3 control-label" >Show as Top Product Category</label>
 
 <div class="col-md-6" >
 
 <input type="radio" name="p_cat_top" value="yes" 
-<?php if($p_cat_top == 'no'){}else{ echo "checked='checked'"; } ?>>
+<?php //if($p_cat_top == 'no'){}else{ echo "checked='checked'"; } ?>>
 
 <label> Yes </label>
 
 <input type="radio" name="p_cat_top" value="no" 
-<?php if($p_cat_top == 'no'){ echo "checked='checked'"; }else{} ?>>
+<?php //if($p_cat_top == 'no'){ echo "checked='checked'"; }else{} ?>>
 
 <label> No </label>
 
 </div>
 
-</div><!-- form-group Ends -->
+</div>form-group Ends -->
 
 <div class="form-group" ><!-- form-group Starts -->
 

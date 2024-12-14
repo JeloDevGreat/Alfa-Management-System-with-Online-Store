@@ -98,37 +98,37 @@ Bundle Url Example : navy-blue-t-shirt
 </div><!-- form-group Ends -->
 
 
-<div class="form-group" ><!-- form-group Starts -->
+<!-- <div class="form-group" > form-group Starts
 
 <label class="col-md-3 control-label" > Select A Manufacturer </label>
 
 <div class="col-md-6" >
 
-<select class="form-control" name="manufacturer"><!-- select manufacturer Starts -->
+<select class="form-control" name="manufacturer"> select manufacturer Starts
 
 <option> Select A Manufacturer </option>
 
 <?php
 
-$get_manufacturer = "select * from manufacturers";
-$run_manufacturer = mysqli_query($con,$get_manufacturer);
-while($row_manufacturer= mysqli_fetch_array($run_manufacturer)){
-$manufacturer_id = $row_manufacturer['manufacturer_id'];
-$manufacturer_title = $row_manufacturer['manufacturer_title'];
+// $get_manufacturer = "select * from manufacturers";
+// $run_manufacturer = mysqli_query($con,$get_manufacturer);
+// while($row_manufacturer= mysqli_fetch_array($run_manufacturer)){
+// $manufacturer_id = $row_manufacturer['manufacturer_id'];
+// $manufacturer_title = $row_manufacturer['manufacturer_title'];
 
-echo "<option value='$manufacturer_id'>
-$manufacturer_title
-</option>";
+// echo "<option value='$manufacturer_id'>
+// $manufacturer_title
+// </option>";
 
-}
+// }
 
 ?>
 
-</select><!-- select manufacturer Ends -->
+</select> select manufacturer Ends
 
 </div>
 
-</div><!-- form-group Ends -->
+</div>form-group Ends -->
 
 
 <div class="form-group" ><!-- form-group Starts -->
@@ -396,7 +396,7 @@ if(isset($_POST['submit'])){
 $product_title = $_POST['product_title'];
 $product_cat = $_POST['product_cat'];
 $cat = $_POST['cat'];
-$manufacturer_id = $_POST['manufacturer'];
+// $manufacturer_id = $_POST['manufacturer'];
 $product_price = $_POST['product_price'];
 $product_desc = $_POST['product_desc'];
 $product_keywords = $_POST['product_keywords'];

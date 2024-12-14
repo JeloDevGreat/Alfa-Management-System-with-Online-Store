@@ -49,15 +49,15 @@
                                     </svg>
                                     Home
                                 </div> -->
-                                <div class="col p-3 btn ">Dashboard</div>
+                                <div class="col p-3 btn "><a href='admin_dashboard.php'>Dashboard</a></div>
                                 <div class="col p-3 btn "><a href='project.php'>Projects</a></div>
                                 <div class="col p-3 btn ">Services</div>
-                                <div class="col p-3 btn ">Inventory</div>
+                                <div class="col p-3 btn "><a href='inventory.php'>Inventory</a></div>
                                 <div class="col p-3 btn">Products</div>
                                 <div class="col p-3 btn">Orders</div>
                                 <div class="col p-3 btn">Customers</div>
                                 <div class="col p-3 btn">Settings</div>
-                                <div class="col p-3 btn">Logout</div>
+                                <div class="col p-3 btn"><a href='../logout.php'>Logout</a></div>
                     </div>
                 </div>
             </div>

@@ -93,7 +93,7 @@ $pro_img1 = $row_products['product_img1'];
 
 $pro_label = $row_products['product_label'];
 
-$product_stock = $row_products['Stock'];
+// $product_stock = $row_products['Stock'];
 
 // $manufacturer_id = $row_products['manufacturer_id'];
 
@@ -153,7 +153,7 @@ echo "
   
     <a href='details.php?pro_id=$pro_url' data-bs-toggle='tooltip' data-bs-placement='bottom' title='$pro_url'>
 
-      <img src='../admin_area/product_images/$pro_img1' class='img-thumbnail' >
+      <img src='../seller/product_images/$pro_img1' class='img-thumbnail' >
 
     </a>
 
@@ -164,7 +164,6 @@ echo "
 
       <span class='h6 col'>Price: $product_price $product_psp_price </span>
     
-      <span class='h6 col'>Stocks: $product_stock</span>
 
     </div>
 
@@ -174,9 +173,9 @@ echo "
 
       <!-- <a href='details.php?pro_id=$pro_id' class='btn btn-danger btn-sm card-link col img-thumbnail'>
 
-         <i class='fa fa-shopping-cart '></i> Add To Cart
+        <i class='fa fa-shopping-cart '></i> Add To Cart
 
-       </a> -->
+      </a> -->
     </div>
 
   </div>

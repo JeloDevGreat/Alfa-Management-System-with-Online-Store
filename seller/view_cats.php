@@ -82,7 +82,7 @@ while($row_cats = mysqli_fetch_array($run_cats)){
 
 $cat_id = $row_cats['cat_id'];
 
-$cat_title = $row_cats['cat_title'];
+$cat_title = $row_cats['category_name'];
 
 
 $i++;
